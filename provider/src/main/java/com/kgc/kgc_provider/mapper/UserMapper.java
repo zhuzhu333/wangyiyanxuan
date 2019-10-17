@@ -1,7 +1,7 @@
-package com.kgc.provider.mapper;
+package com.kgc.kgc_provider.mapper;
 
-import com.kgc.provider.dto.User;
-import com.kgc.provider.dto.UserExample;
+import com.kgc.kgc_provider.model.User;
+import com.kgc.kgc_provider.model.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

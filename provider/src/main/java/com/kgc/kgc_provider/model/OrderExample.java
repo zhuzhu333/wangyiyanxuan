@@ -1,4 +1,4 @@
-package com.kgc.provider.dto;
+package com.kgc.kgc_provider.model;
 
 import java.util.ArrayList;
 import java.util.Date;
