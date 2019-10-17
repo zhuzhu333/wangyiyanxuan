@@ -3,6 +3,7 @@ package com.kgc.provider.service.serviceImpl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.kgc.provider.dto.GoodsGroup;
 import com.kgc.provider.dto.GoodsGroupExample;
+import com.kgc.provider.mapper.GoodsGroupMapper;
 import com.kgc.provider.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 

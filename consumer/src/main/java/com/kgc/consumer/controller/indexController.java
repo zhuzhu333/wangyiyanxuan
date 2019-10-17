@@ -1,6 +1,7 @@
 package com.kgc.consumer.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+
 import com.kgc.provider.dto.GoodsGroup;
 import com.kgc.provider.service.IndexService;
 import io.swagger.annotations.Api;
