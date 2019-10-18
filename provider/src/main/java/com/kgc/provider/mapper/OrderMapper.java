@@ -93,4 +93,9 @@ public interface OrderMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Order record);
+
+
+
+    int highPraise(String gid);
+    int totalOrder(String gid);
 }

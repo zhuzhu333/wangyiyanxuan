@@ -1,4 +1,4 @@
-package com.wym.wymconsumer.utils.result;
+package com.kgc.consumer.utils.result;
 
 import java.io.Serializable;
 

@@ -954,6 +954,66 @@ public class GoodExample {
             addCriterion("good_sort not between", value1, value2, "goodSort");
             return (Criteria) this;
         }
+
+        public Criteria andCurrentStockIsNull() {
+            addCriterion("current_stock is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockIsNotNull() {
+            addCriterion("current_stock is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockEqualTo(Integer value) {
+            addCriterion("current_stock =", value, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockNotEqualTo(Integer value) {
+            addCriterion("current_stock <>", value, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockGreaterThan(Integer value) {
+            addCriterion("current_stock >", value, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockGreaterThanOrEqualTo(Integer value) {
+            addCriterion("current_stock >=", value, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockLessThan(Integer value) {
+            addCriterion("current_stock <", value, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockLessThanOrEqualTo(Integer value) {
+            addCriterion("current_stock <=", value, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockIn(List<Integer> values) {
+            addCriterion("current_stock in", values, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockNotIn(List<Integer> values) {
+            addCriterion("current_stock not in", values, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockBetween(Integer value1, Integer value2) {
+            addCriterion("current_stock between", value1, value2, "currentStock");
+            return (Criteria) this;
+        }
+
+        public Criteria andCurrentStockNotBetween(Integer value1, Integer value2) {
+            addCriterion("current_stock not between", value1, value2, "currentStock");
+            return (Criteria) this;
+        }
     }
 
     /**

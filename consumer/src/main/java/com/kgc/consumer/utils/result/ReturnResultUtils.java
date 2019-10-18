@@ -1,4 +1,4 @@
-package com.wym.wymconsumer.utils.result;
+package com.kgc.consumer.utils.result;
 
 /***
  * created by 北大课工场

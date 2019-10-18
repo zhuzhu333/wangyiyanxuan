@@ -19,7 +19,7 @@
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/wyyx?=true"
-                        userId="root" password="123456">
+                        userId="root" password="root">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -52,30 +52,26 @@
             <columnOverride column="GradeID" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
         </table>-->
 
-        <table schema="" tableName="users" domainObjectName="User" >
+        <!--<table schema="" tableName="users" domainObjectName="User" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
-        </table>
-        <table schema="" tableName="orders" domainObjectName="Order" >
+        </table>-->
+        <!--<table schema="" tableName="orders" domainObjectName="Order" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
-        </table>
+        </table>-->
         <table schema="" tableName="goods" domainObjectName="Good" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
         </table>
-        <table schema="" tableName="wxusers" domainObjectName="WxUser" >
+       <!-- <table schema="" tableName="wxusers" domainObjectName="WxUser" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
         </table>
         <table schema="" tableName="goods_group" domainObjectName="GoodsGroup" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
-        </table>
-        <table schema="" tableName="shoppingcart" domainObjectName="Shoppingcart" >
-            <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
-        </table>
+        </table>-->
 
 
         <!--<table schema="" tableName="store_info" domainObjectName="StoreInfo">-->
