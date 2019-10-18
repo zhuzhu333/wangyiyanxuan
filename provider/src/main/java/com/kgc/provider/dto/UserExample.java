@@ -1,9 +1,10 @@
 package com.kgc.provider.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserExample {
+public class UserExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;
