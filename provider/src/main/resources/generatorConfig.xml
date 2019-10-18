@@ -14,7 +14,7 @@
 
         <commentGenerator>
             <property name="suppressDate" value="true"/>
-            <property name="addRemarkComments" value="true"/>
+            <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
@@ -52,18 +52,18 @@
             <columnOverride column="GradeID" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
         </table>-->
 
-        <!--<table schema="" tableName="users" domainObjectName="User" >
+        <table schema="" tableName="users" domainObjectName="User" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
-        </table>-->
+        </table>
         <!--<table schema="" tableName="orders" domainObjectName="Order" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
         </table>-->
-        <table schema="" tableName="goods" domainObjectName="Good" >
+        <!--<table schema="" tableName="goods" domainObjectName="Good" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
-        </table>
+        </table>-->
        <!-- <table schema="" tableName="wxusers" domainObjectName="WxUser" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>

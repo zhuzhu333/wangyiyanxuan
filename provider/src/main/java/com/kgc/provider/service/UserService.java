@@ -8,4 +8,6 @@ import com.kgc.provider.dto.User;
 public interface UserService {
 
     int register(User user);
+
+    User login(String userName,String userPassword);
 }
