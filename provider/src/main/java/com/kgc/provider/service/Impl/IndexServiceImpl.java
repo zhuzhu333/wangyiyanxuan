@@ -1,4 +1,4 @@
-package com.kgc.provider.service.serviceImpl;
+package com.kgc.provider.service.Impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.kgc.provider.dto.GoodsGroup;
