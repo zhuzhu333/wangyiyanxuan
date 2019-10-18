@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgc.provider.mapper.ShoppingcartMapper">
+  <resultMap id="BaseResultMap" type="com.kgc.provider.dto.Shoppingcart">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="good_image" jdbcType="VARCHAR" property="goodImage" />
+    <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+    <result column="good_content" jdbcType="VARCHAR" property="goodContent" />
+    <result column="good_price" jdbcType="DOUBLE" property="goodPrice" />
+    <result column="good_amount" jdbcType="INTEGER" property="goodAmount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, good_image, good_name, good_content, good_price, good_amount
+  </sql>
+  <select id="selectByExample" parameterType="com.kgc.provider.dto.ShoppingcartExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shoppingcart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shoppingcart
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from shoppingcart
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.provider.dto.ShoppingcartExample">
+    delete from shoppingcart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.provider.dto.Shoppingcart">
+    insert into shoppingcart (id, good_image, good_name, 
+      good_content, good_price, good_amount
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodImage,jdbcType=VARCHAR}, #{goodName,jdbcType=VARCHAR}, 
+      #{goodContent,jdbcType=VARCHAR}, #{goodPrice,jdbcType=DOUBLE}, #{goodAmount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.provider.dto.Shoppingcart">
+    insert into shoppingcart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodImage != null">
+        good_image,
+      </if>
+      <if test="goodName != null">
+        good_name,
+      </if>
+      <if test="goodContent != null">
+        good_content,
+      </if>
+      <if test="goodPrice != null">
+        good_price,
+      </if>
+      <if test="goodAmount != null">
+        good_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodImage != null">
+        #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodName != null">
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodContent != null">
+        #{goodContent,jdbcType=VARCHAR},
+      </if>
+      <if test="goodPrice != null">
+        #{goodPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodAmount != null">
+        #{goodAmount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.provider.dto.ShoppingcartExample" resultType="java.lang.Long">
+    select count(*) from shoppingcart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shoppingcart
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodImage != null">
+        good_image = #{record.goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodName != null">
+        good_name = #{record.goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodContent != null">
+        good_content = #{record.goodContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodPrice != null">
+        good_price = #{record.goodPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodAmount != null">
+        good_amount = #{record.goodAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shoppingcart
+    set id = #{record.id,jdbcType=BIGINT},
+      good_image = #{record.goodImage,jdbcType=VARCHAR},
+      good_name = #{record.goodName,jdbcType=VARCHAR},
+      good_content = #{record.goodContent,jdbcType=VARCHAR},
+      good_price = #{record.goodPrice,jdbcType=DOUBLE},
+      good_amount = #{record.goodAmount,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.provider.dto.Shoppingcart">
+    update shoppingcart
+    <set>
+      <if test="goodImage != null">
+        good_image = #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodName != null">
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodContent != null">
+        good_content = #{goodContent,jdbcType=VARCHAR},
+      </if>
+      <if test="goodPrice != null">
+        good_price = #{goodPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodAmount != null">
+        good_amount = #{goodAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.provider.dto.Shoppingcart">
+    update shoppingcart
+    set good_image = #{goodImage,jdbcType=VARCHAR},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      good_content = #{goodContent,jdbcType=VARCHAR},
+      good_price = #{goodPrice,jdbcType=DOUBLE},
+      good_amount = #{goodAmount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT * FROM shoppingcart
+  </select>
+  <update id="updateByGoodAmount" parameterType="com.kgc.provider.dto.Shoppingcart">
+    UPDATE shoppingcart set good_amount=#{amount} where id =#{id}
+  </update>
+
+
+</mapper>

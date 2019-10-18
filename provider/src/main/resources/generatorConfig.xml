@@ -68,6 +68,10 @@
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
         </table>
+        <table schema="" tableName="shoppingcart" domainObjectName="Shoppingcart" >
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
+        </table>
 
 
         <!--<table schema="" tableName="store_info" domainObjectName="StoreInfo">-->
