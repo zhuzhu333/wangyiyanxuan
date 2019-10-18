@@ -14,12 +14,12 @@
 
         <commentGenerator>
             <property name="suppressDate" value="true"/>
-            <property name="suppressAllComments" value="true"/>
+            <property name="addRemarkComments" value="true"/>
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/wyyx?=true"
-                        userId="root" password="root">
+                        userId="root" password="123456">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -65,6 +65,10 @@
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
         </table>
         <table schema="" tableName="wxusers" domainObjectName="WxUser" >
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
+        </table>
+        <table schema="" tableName="goods_group" domainObjectName="GoodsGroup" >
             <property name="useActualColumnNames" value="false"/>
             <columnOverride column="id" jdbcType="BIGINT" javaType="java.lang.Long"></columnOverride>
         </table>

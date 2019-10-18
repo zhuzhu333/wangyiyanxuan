@@ -1,4 +1,4 @@
-package com.kgc.consumer.contant;
+package com.kgc.consumer.contants;
 
 import org.springframework.stereotype.Component;
 
