@@ -1,10 +1,12 @@
 package com.kgc.consumer.vo;
 
+import java.io.Serializable;
+
 /**
  * Created By: YunCeng
  * Created on: 2019/10/17:19:59
  */
-public class ShoppingcartVo {
+public class ShoppingcartVo implements Serializable {
     private Long id;
 
     private String goodImage;

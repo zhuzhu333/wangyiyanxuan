@@ -8,16 +8,18 @@ import com.kgc.provider.dto.Good;
 import com.kgc.provider.service.ShowService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created BY: WYM
  * Created on: 2019/10/17 18:54
  */
-@Api("展示商品")
+@Api(tags = "展示商品")
 @RestController
 @RequestMapping(value = "show")
 public class ShowController {
@@ -27,8 +29,9 @@ public class ShowController {
 
 
     @GetMapping(value = "showGoods")
-    @ApiOperation("展示商品")
-    public ReturnResult showGoods(String gid) {
+    @ApiOperation("商品")
+    public ReturnResult showGoods(@ApiParam(value = "商品id", required = true)
+                                  @RequestParam(value = "gid") String gid) {
         Good good = showService.showGoods(gid);
         GoodsVo goodsVo = new GoodsVo();
         BeanUtils.copyProperties(good, goodsVo);
@@ -48,10 +51,12 @@ public class ShowController {
             goodsVo.setColor("还没有评价");
         }
 
-        if (good.getCurrentStock() / good.getGoodStock() >= 0.5) {
+        Double CurrentStock = Double.valueOf(good.getCurrentStock());
+        Double GoodStock = Double.valueOf(good.getGoodStock());
+        if ((CurrentStock / GoodStock) >= 0.5) {
             goodsVo.setCurrentStock(good.getCurrentStock());
             goodsVo.setStockMsg("库存充足");
-        } else if (good.getCurrentStock() / good.getGoodStock() < 0.5 && good.getCurrentStock() / good.getGoodStock() > 0) {
+        } else if ((CurrentStock / GoodStock) < 0.5 && (CurrentStock / GoodStock) > 0) {
             goodsVo.setCurrentStock(good.getCurrentStock());
             goodsVo.setStockMsg("尽快选购");
         } else {
