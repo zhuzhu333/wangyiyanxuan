@@ -59,6 +59,7 @@ public class UserController {
     @GetMapping(value = "login")
     public ReturnResult login(@ApiParam(value = "用户名", required = true) @RequestParam(value = "userName") String userName,
                               @ApiParam(value = "密码", required = true) @RequestParam(value = "userPassword") String userPassword,
+                              @ApiParam(value = "是否同意", required = true, defaultValue = "1") @RequestParam(value = "isAgree") int isAgree,
                               HttpServletRequest request){
         String token = request.getSession().getId();
         User user = userService.login(userName,userPassword);
