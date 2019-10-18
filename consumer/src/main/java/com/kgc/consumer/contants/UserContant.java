@@ -1,11 +1,11 @@
-package com.kgc.consumer.contant;
+package com.kgc.consumer.contants;
 
 import org.springframework.stereotype.Component;
 
 /**
  * Created by boot on 2019/9/28.
  */
-@Component
+
 public final class UserContant {
     //用户注册时判断用户名是否重复的namespace
     public static final String REDIS_USER_LOGIN_NAME_SPACE = "USER_REGISTER_NAME:";
