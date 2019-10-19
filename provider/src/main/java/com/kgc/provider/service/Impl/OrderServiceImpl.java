@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public boolean isDel(int id){
-        boolean flag = orderMapper.updateById(id) == 1 ? true : false;
+        boolean flag = orderMapper.isDel(id) == 1 ? true : false;
         return flag;
     }
 
@@ -48,4 +48,15 @@ public class OrderServiceImpl implements OrderService {
         int delCount = orderMapper.deleteByExample(orderExample);
         return delCount;
     }
+
+    public int updateGoodIntegral(int id,int score){
+        Order order = orderMapper.selectByPrimaryKey((long) id);
+        if (order.getStatus() == 1){
+            if ((score>0)&&(score<=10)){
+                return orderMapper.updateGoodIntegral(id,score);
+            }
+        }
+        return 0;
+    }
+
 }

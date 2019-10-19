@@ -72,6 +72,15 @@ public class OrderController {
         return ReturnResultUtils.returnSuccess(delCount);
     }
 
+    @ApiOperation("打分")
+    @GetMapping(value = "/delRecycle")
+    public ReturnResult updateGoodIntegral(int id,int score) {
+        int result = orderService.updateGoodIntegral(id,score);
+        if (result != 0){
+            return ReturnResultUtils.returnSuccess(result);
+        }
+        return  ReturnResultUtils.returnFail(OrderContant.ORDER_GRADE_FAIL_CODE,"打分失败");
+    }
 
 
 }

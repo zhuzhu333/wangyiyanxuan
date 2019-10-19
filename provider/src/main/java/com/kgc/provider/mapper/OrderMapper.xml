@@ -436,11 +436,16 @@
     </if>
   </select>
 
-  <update id="updateById" parameterType="int">
+  <update id="isDel" parameterType="int">
     update orders
     set is_delete = 1
     where id = #{id}
   </update>
 
+  <update id="updateGoodIntegral" parameterType="int">
+    update orders
+    set good_integral = #{score,jdbcType=INTEGER},
+    where id = #{id}
+  </update>
 
 </mapper>
