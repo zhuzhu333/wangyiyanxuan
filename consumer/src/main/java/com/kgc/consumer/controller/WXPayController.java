@@ -1,7 +1,6 @@
 package com.kgc.consumer.controller;
 
 import com.google.common.collect.Maps;
-import com.kgc.consumer.custom.CheckInfo;
 import com.kgc.consumer.model.WXPayModel;
 import com.kgc.consumer.service.WXPayServiceApi;
 import com.kgc.consumer.utils.wxPayUtils.WxPayUtils;
