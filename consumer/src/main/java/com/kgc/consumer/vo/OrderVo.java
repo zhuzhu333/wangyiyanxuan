@@ -1,18 +1,24 @@
 package com.kgc.consumer.vo;
 
-public class OrderVo {
-    private int type;
+import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
+
+@Component
+public class OrderVo implements Serializable {
+    private int orderType;
     private int startPage;
     private int pageSize;
     private String code;
     private String goodName;
+    private Double goodPrice;
 
-    public int getType() {
-        return type;
+    public int getOrderType() {
+        return orderType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setOrderType(int orderType) {
+        this.orderType = orderType;
     }
 
     public int getStartPage() {
@@ -45,5 +51,13 @@ public class OrderVo {
 
     public void setGoodName(String goodName) {
         this.goodName = goodName;
+    }
+
+    public Double getGoodPrice() {
+        return goodPrice;
+    }
+
+    public void setGoodPrice(Double goodPrice) {
+        this.goodPrice = goodPrice;
     }
 }

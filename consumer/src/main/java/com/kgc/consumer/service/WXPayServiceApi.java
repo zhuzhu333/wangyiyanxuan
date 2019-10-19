@@ -21,6 +21,7 @@ public class WXPayServiceApi {
 
     @Autowired
     private WXPayModel wxPayModel;
+    @Autowired
 
 
     //传给我订单，状态为未支付，我从订单里面取我需要的good_id和Price
@@ -32,9 +33,9 @@ public class WXPayServiceApi {
         param.put("appid",wxPayModel.getAppid());
         param.put("mch_id",wxPayModel.getMchid());
         param.put("nonce_str", CommonUtil.createUUID(32));
-        param.put("body",orderVo.getName());
+        param.put("body",orderVo.getGoodName());
         param.put("out_trade_no",CommonUtil.createUUID(32));
-        param.put("total_fee",orderVo.getPrice());
+        param.put("total_fee",String.valueOf(orderVo.getGoodPrice()));
         param.put("spbill_create_ip","192.168.1.121");
         param.put("notify_url",wxPayModel.getNotifyurl());
         param.put("trade_type",wxPayModel.getType());

@@ -1,5 +1,6 @@
 package com.kgc.provider.mapper;
 
+import com.kgc.provider.dto.Good;
 import com.kgc.provider.dto.Order;
 import com.kgc.provider.dto.OrderExample;
 import java.util.List;
@@ -29,9 +30,11 @@ public interface OrderMapper {
     int updateByPrimaryKey(Order record);
 
     int highPraise(String gid);
+
     int totalOrder(String gid);
 
+    List<Order> getGoodList(Order order);
 
-
+    int count(Order order);
 
 }

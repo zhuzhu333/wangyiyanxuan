@@ -1,8 +1,9 @@
 package com.kgc.provider.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable {
     private Long id;
 
     private String goodId;
@@ -28,6 +29,12 @@ public class Order {
     private Integer goodAmount;
 
     private Double goodPrice;
+
+    private Integer orderType;
+
+    private int startPage;
+
+    private int pageSize;
 
     public Long getId() {
         return id;
@@ -131,5 +138,29 @@ public class Order {
 
     public void setGoodPrice(Double goodPrice) {
         this.goodPrice = goodPrice;
+    }
+
+    public Integer getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(Integer orderType) {
+        this.orderType = orderType;
+    }
+
+    public int getStartPage() {
+        return startPage;
+    }
+
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 }
