@@ -7,5 +7,5 @@ package com.kgc.consumer.contants;
 public final class OrderContant {
 
     public static final int ORDER_IS_DEL_FAIL_CODE = 450;
-
+    public static final int ORDER_GRADE_FAIL_CODE = 450;
 }

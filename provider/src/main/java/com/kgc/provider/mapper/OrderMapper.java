@@ -37,6 +37,8 @@ public interface OrderMapper {
 
     int count(Order order);
 
-    int updateById(int id);
+    int isDel(int id);
+
+    int updateGoodIntegral(int id,int score);
 
 }

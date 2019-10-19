@@ -21,4 +21,6 @@ public interface OrderService {
 
     int delRecycle();
 
+    int updateGoodIntegral(int id,int score);
+
 }
