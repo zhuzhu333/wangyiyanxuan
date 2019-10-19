@@ -32,4 +32,6 @@ public interface OrderMapper {
     int totalOrder(String gid);
 
 
+
+
 }

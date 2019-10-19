@@ -6,6 +6,7 @@ import com.kgc.provider.dto.GoodExample;
 import com.kgc.provider.dto.User;
 import com.kgc.provider.dto.UserExample;
 import com.kgc.provider.mapper.GoodMapper;
+import com.kgc.provider.mapper.OrderMapper;
 import com.kgc.provider.mapper.UserMapper;
 import com.kgc.provider.service.ShowService;
 import org.springframework.beans.BeanUtils;
