@@ -1,31 +1,49 @@
 package com.kgc.consumer.vo;
 
 public class OrderVo {
-    private int id;
-    private String name;
-    private String price;
+    private int type;
+    private int startPage;
+    private int pageSize;
+    private String code;
+    private String goodName;
 
-    public int getId() {
-        return id;
+    public int getType() {
+        return type;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setType(int type) {
+        this.type = type;
     }
 
-    public String getName() {
-        return name;
+    public int getStartPage() {
+        return startPage;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
     }
 
-    public String getPrice() {
-        return price;
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getGoodName() {
+        return goodName;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
     }
 }
