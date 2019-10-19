@@ -37,4 +37,6 @@ public interface OrderMapper {
 
     int count(Order order);
 
+    int updateById(int id);
+
 }

@@ -28,4 +28,9 @@ public class OrderServiceImpl implements OrderService {
     public int count(Order order){
         return orderMapper.count(order);
     }
+
+    public boolean isDel(int id){
+        boolean flag = orderMapper.updateById(id) == 1 ? true : false;
+        return flag;
+    }
 }

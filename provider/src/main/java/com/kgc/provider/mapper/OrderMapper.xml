@@ -436,4 +436,10 @@
     </if>
   </select>
 
+  <update id="updateById" parameterType="int">
+    update orders
+    set is_delete = 1
+    where id = #{id}
+  </update>
+
 </mapper>

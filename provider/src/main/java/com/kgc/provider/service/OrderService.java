@@ -15,4 +15,6 @@ public interface OrderService {
 
     int count(Order order);
 
+    boolean isDel(int id);
+
 }
