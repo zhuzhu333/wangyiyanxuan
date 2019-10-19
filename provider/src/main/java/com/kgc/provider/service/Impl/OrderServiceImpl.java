@@ -2,6 +2,7 @@ package com.kgc.provider.service.Impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.kgc.provider.dto.Order;
+import com.kgc.provider.dto.OrderExample;
 import com.kgc.provider.mapper.OrderMapper;
 import com.kgc.provider.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,19 @@ public class OrderServiceImpl implements OrderService {
     public boolean isDel(int id){
         boolean flag = orderMapper.updateById(id) == 1 ? true : false;
         return flag;
+    }
+
+    public List<Order> recycle(){
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andIsDeleteEqualTo(1);
+        List<Order> orderList = orderMapper.selectByExample(orderExample);
+        return orderList;
+    }
+
+    public int delRecycle(){
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andIsDeleteEqualTo(1);
+        int delCount = orderMapper.deleteByExample(orderExample);
+        return delCount;
     }
 }

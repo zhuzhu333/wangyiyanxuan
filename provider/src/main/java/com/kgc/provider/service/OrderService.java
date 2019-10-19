@@ -17,4 +17,8 @@ public interface OrderService {
 
     boolean isDel(int id);
 
+    List<Order> recycle();
+
+    int delRecycle();
+
 }

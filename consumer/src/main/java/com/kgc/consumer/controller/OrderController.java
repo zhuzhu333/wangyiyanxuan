@@ -48,14 +48,30 @@ public class OrderController {
         return ReturnResultUtils.returnSuccess(page);
     }
 
-    @ApiOperation("删除订单")
-    @GetMapping(value = "del")
-    public ReturnResult del(@ApiParam(value = "订单id", required = true) @RequestParam(value = "id") int id) {
+    @ApiOperation("逻辑删除订单")
+    @GetMapping(value = "/isDel")
+    public ReturnResult isDel(@ApiParam(value = "订单id", required = true) @RequestParam(value = "id") int id) {
         boolean isDel = orderService.isDel(id);
         if (isDel) {
             return ReturnResultUtils.returnSuccess();
         }
         return ReturnResultUtils.returnFail(OrderContant.ORDER_IS_DEL_FAIL_CODE, "删除失败！");
     }
+
+    @ApiOperation("查看回收站")
+    @GetMapping(value = "/recycle")
+    public ReturnResult recycle(){
+        List<Order> recycleList = orderService.recycle();
+        return ReturnResultUtils.returnSuccess(recycleList);
+    }
+
+    @ApiOperation("删除回收站")
+    @GetMapping(value = "/delRecycle")
+    public ReturnResult delRecycle(){
+        int delCount = orderService.delRecycle();
+        return ReturnResultUtils.returnSuccess(delCount);
+    }
+
+
 
 }
