@@ -22,6 +22,10 @@ public class WXPayServiceApi {
     @Autowired
     private WXPayModel wxPayModel;
 
+
+    //传给我订单，状态为未支付，我从订单里面取我需要的good_id和Price
+
+
     public String unifiedWxpay(OrderVo orderVo) throws Exception{
 
         SortedMap<String, String> param = new TreeMap<String, String>();

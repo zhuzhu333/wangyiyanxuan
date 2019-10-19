@@ -14,5 +14,6 @@ public interface ShoppingcartService {
     int insert(Shoppingcart record);
     int deleteByPrimaryKey(Long id);
     int updateByGoodAmount(long id,Integer amount);
+    Shoppingcart selectByPrimaryKey(Long id);
 
 }

@@ -36,4 +36,9 @@ public class ShoppingcartServiceImpl implements ShoppingcartService {
     public int updateByGoodAmount(long id, Integer amount) {
         return shoppingcartMapper.updateByGoodAmount(id,amount);
     }
+
+    @Override
+    public Shoppingcart selectByPrimaryKey(Long id) {
+        return shoppingcartMapper.selectByPrimaryKey(id);
+    }
 }

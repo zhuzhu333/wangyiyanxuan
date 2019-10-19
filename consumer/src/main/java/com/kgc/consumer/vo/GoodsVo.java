@@ -15,7 +15,7 @@ public class GoodsVo implements Serializable {
     private String goodImage;
     private Double goodPrice;
     private int rate;
-    @ApiModelProperty(value = "好频率颜色", required = true)
+    @ApiModelProperty(value = "好评率颜色", required = true)
     private String color;
     @ApiModelProperty(value = "积分可减金额", required = true)
     private int subPrice;

@@ -6,7 +6,6 @@ import com.kgc.provider.dto.GoodExample;
 import com.kgc.provider.dto.User;
 import com.kgc.provider.dto.UserExample;
 import com.kgc.provider.mapper.GoodMapper;
-import com.kgc.provider.mapper.OrderMapper;
 import com.kgc.provider.mapper.UserMapper;
 import com.kgc.provider.service.ShowService;
 import org.springframework.beans.BeanUtils;
@@ -32,6 +31,7 @@ public class ShowServiceImpl implements ShowService {
 
     @Override
     public Good showGoods(String gid) {
+
         GoodExample goodExample = new GoodExample();
         goodExample.createCriteria().andGoodIdEqualTo(gid);
         List<Good> goodList = goodMapper.selectByExample(goodExample);
