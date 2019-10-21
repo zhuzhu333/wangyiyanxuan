@@ -1,12 +1,10 @@
 package com.kgc.consumer.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.kgc.consumer.config.custom.CurrentUser;
 import com.kgc.consumer.config.custom.LoginRequired;
 import com.kgc.consumer.utils.result.ReturnResult;
 import com.kgc.consumer.utils.result.ReturnResultUtils;
 import com.kgc.consumer.vo.GoodsVo;
-import com.kgc.consumer.vo.SumVo;
 import com.kgc.provider.dto.Good;
 import com.kgc.provider.service.ShowService;
 import io.swagger.annotations.Api;
@@ -34,7 +32,7 @@ public class ShowController {
     @GetMapping(value = "showGoods")
     @ApiOperation("商品")
     public ReturnResult showGoods(@ApiParam(value = "商品id", required = true)
-                                  @RequestParam(value = "gid") String gid, @CurrentUser SumVo sumVo) {
+                                  @RequestParam(value = "gid") String gid) {
         Good good = showService.showGoods(gid);
         GoodsVo goodsVo = new GoodsVo();
         BeanUtils.copyProperties(good, goodsVo);

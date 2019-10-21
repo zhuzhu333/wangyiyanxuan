@@ -3,7 +3,7 @@ package com.kgc.consumer.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.google.common.collect.Maps;
 import com.kgc.consumer.config.custom.CurrentUser;
-import com.kgc.consumer.custom.LoginRequired;
+import com.kgc.consumer.config.custom.LoginRequired;
 import com.kgc.consumer.model.WXPayModel;
 import com.kgc.consumer.service.WXPayServiceApi;
 import com.kgc.consumer.utils.result.ReturnResult;
@@ -13,7 +13,6 @@ import com.kgc.consumer.vo.ChooseGoodsVo;
 import com.kgc.consumer.vo.OrderVo;
 import com.kgc.consumer.vo.SumVo;
 import com.kgc.provider.dto.Good;
-import com.kgc.provider.dto.User;
 import com.kgc.provider.service.ChooseService;
 import com.kgc.provider.service.ShowService;
 import io.swagger.annotations.Api;
@@ -68,8 +67,8 @@ public class ChooseController {
         } else {
             phone = sumVo.getPhone();
         }
-        /*int integral = showService.selectIntegral(phone);
-        chooseVo.setFreight(integral / 100);*/
+        int integral = showService.selectIntegral(phone);
+        chooseVo.setFreight(integral / 100);
 
         //运费
         if (sumVo.getSuperman() == 1) {
