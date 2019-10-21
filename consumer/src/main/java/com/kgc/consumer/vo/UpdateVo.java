@@ -5,34 +5,28 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 /**
- * Created by Campbell on 2019/10/18 10:57
+ * @author
+ * @description
+ * @return
+ * @throws
+ * @date 2019/10/20 17:58
+ * @since
  */
-public class UserVo implements Serializable {
-
-    @ApiModelProperty(value = "用户名", required = true)
+public class UpdateVo implements Serializable {
+    @ApiModelProperty(value = "用户姓名", required = true)
     private String userName;
-
-    @ApiModelProperty(value = "手机号", required = true)
+    @ApiModelProperty(value = "用户手机号", required = true)
     private String userPhone;
-
-    @ApiModelProperty(value = "密码", required = true)
+    @ApiModelProperty(value = "用户密码", required = true)
     private String userPassword;
-
-    @ApiModelProperty(value = "性别", required = true)
+    @ApiModelProperty(value = "用户性别", required = true)
     private Integer userSex;
-
-    @ApiModelProperty(value = "邮箱", required = true)
+    @ApiModelProperty(value = "用户邮箱", required = true)
     private String userEmail;
-    @ApiModelProperty(value = "出生日期", required = true)
+    @ApiModelProperty(value = "用户地址", required = true)
+    private String address;
+    @ApiModelProperty(value = "生日", required = true)
     private String birthday;
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
 
     public String getUserName() {
         return userName;
@@ -72,5 +66,21 @@ public class UserVo implements Serializable {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 }

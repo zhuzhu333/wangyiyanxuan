@@ -69,6 +69,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+
                     <overwrite>true</overwrite>
                 </configuration>
             </plugin>

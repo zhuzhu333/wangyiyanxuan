@@ -1,5 +1,6 @@
 package com.kgc.provider.mapper;
 
+import com.kgc.provider.dto.Shoppingcart;
 import com.kgc.provider.dto.WxUser;
 import com.kgc.provider.dto.WxUserExample;
 import java.util.List;
@@ -93,4 +94,5 @@ public interface WxUserMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(WxUser record);
+
 }

@@ -1,4 +1,4 @@
-package com.kgc.provider.service.Impl;
+package com.kgc.provider.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.kgc.provider.dto.User;
@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.insertSelective(user);
     }
 
-    public User login(String userName,String userPassword){
+    public User login(String phone,String userPassword){
         UserExample userExample = new UserExample();
-        userExample.createCriteria().andUserNameEqualTo(userName);
+        userExample.createCriteria().andUserPhoneEqualTo(phone);
         List<User> userList = userMapper.selectByExample(userExample);
         if (!CollectionUtils.isEmpty(userList)){
             if (userPassword.equals(userList.get(0).getUserPassword())){
@@ -34,4 +34,19 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public int updateExp(String phone) {
+        return userMapper.updateExp(phone);
+    }
+
+    @Override
+    public User searchUser(String phone) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserPhoneEqualTo(phone);
+        List<User> userList = userMapper.selectByExample(userExample);
+        return userList.get(0);
+    }
+
+
 }

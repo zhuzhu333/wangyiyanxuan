@@ -4,7 +4,6 @@ package com.kgc.consumer.vo;
  * Created by Campbell on 2019/10/19 10:01
  */
 public class SumVo {
-    private Long id;
 
     private String userName;
 
@@ -26,6 +25,8 @@ public class SumVo {
 
     private Integer isDelete;
 
+
+
     private String openid;
 
     private String nickname;
@@ -39,15 +40,14 @@ public class SumVo {
     private String province;
 
     private String headimgurl;
+    private  String phone;
 
-    private String phone;
-
-    public Long getId() {
-        return id;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getUserName() {
@@ -186,11 +186,5 @@ public class SumVo {
         this.headimgurl = headimgurl;
     }
 
-    public String getPhone() {
-        return phone;
-    }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 }

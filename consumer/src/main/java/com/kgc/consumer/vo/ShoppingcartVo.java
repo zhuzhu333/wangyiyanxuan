@@ -1,24 +1,24 @@
 package com.kgc.consumer.vo;
 
-import java.io.Serializable;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Created By: YunCeng
  * Created on: 2019/10/17:19:59
  */
-public class ShoppingcartVo implements Serializable {
+public class ShoppingcartVo {
     private Long id;
-
+    @ApiModelProperty(value = "图片",required = true,example = "1")
     private String goodImage;
-
+    @ApiModelProperty(value = "商品名字",required = true,example = "1")
     private String goodName;
-
+    @ApiModelProperty(value = "商品描述",required = true,example = "1")
     private String goodContent;
-
+    @ApiModelProperty(value = "商品价格",required = true,example = "1")
     private Double goodPrice;
-
+    @ApiModelProperty(value = "购买数量",required = true,example = "1")
     private Integer goodAmount;
-
+    @ApiModelProperty(value = "总价",required = true,example = "1")
     private Double totalPrice;
 
     public Long getId() {

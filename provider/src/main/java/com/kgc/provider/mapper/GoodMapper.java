@@ -93,4 +93,8 @@ public interface GoodMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Good record);
+    List<Good> selectBySort(@Param("goodSort") int goodSort,@Param("sPage") int sPage,@Param("pSize") int pSize);
+    Good selectHotGood();
+    Good selectNewDate();
+    List<Good> getAllGoods(@Param("goodName") String goodName,@Param("sPage") int sPage,@Param("pSize") int pSize);
 }

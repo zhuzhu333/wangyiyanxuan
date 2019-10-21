@@ -18,7 +18,7 @@ public class GoodsVo implements Serializable {
     @ApiModelProperty(value = "好评率颜色", required = true)
     private String color;
     @ApiModelProperty(value = "积分可减金额", required = true)
-    private int subPrice;
+    private double subPrice;
     @ApiModelProperty(value = "购买后回馈积分", required = true)
     private int reIntegral;
     @ApiModelProperty(value = "当前库存", required = true)
@@ -67,11 +67,11 @@ public class GoodsVo implements Serializable {
         this.rate = rate;
     }
 
-    public int getSubPrice() {
+    public double getSubPrice() {
         return subPrice;
     }
 
-    public void setSubPrice(int subPrice) {
+    public void setSubPrice(double subPrice) {
         this.subPrice = subPrice;
     }
 

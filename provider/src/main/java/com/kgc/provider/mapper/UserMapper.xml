@@ -5,7 +5,6 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
     <result column="user_sex" jdbcType="INTEGER" property="userSex" />
     <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
     <result column="user_level" jdbcType="INTEGER" property="userLevel" />
@@ -13,6 +12,11 @@
     <result column="growth_value" jdbcType="INTEGER" property="growthValue" />
     <result column="superman" jdbcType="INTEGER" property="superman" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="birthmodify" jdbcType="INTEGER" property="birthmodify" />
+    <result column="exp" jdbcType="INTEGER" property="exp" />
+    <result column="adress" jdbcType="VARCHAR" property="adress" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_name, user_phone, user_password, user_sex, user_email, user_level, integral, 
-    growth_value, superman, is_delete
+    id, user_name, user_phone, user_sex, user_email, user_level, integral, growth_value, 
+    superman, is_delete, user_password, birthday, birthmodify, `exp`, adress
   </sql>
   <select id="selectByExample" parameterType="com.kgc.provider.dto.UserExample" resultMap="BaseResultMap">
     select
@@ -108,13 +112,17 @@
   </delete>
   <insert id="insert" parameterType="com.kgc.provider.dto.User">
     insert into users (id, user_name, user_phone, 
-      user_password, user_sex, user_email, 
-      user_level, integral, growth_value, 
-      superman, is_delete)
+      user_sex, user_email, user_level, 
+      integral, growth_value, superman, 
+      is_delete, user_password, birthday, 
+      birthmodify, `exp`, adress
+      )
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
-      #{userPassword,jdbcType=VARCHAR}, #{userSex,jdbcType=INTEGER}, #{userEmail,jdbcType=VARCHAR}, 
-      #{userLevel,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{growthValue,jdbcType=INTEGER}, 
-      #{superman,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER})
+      #{userSex,jdbcType=INTEGER}, #{userEmail,jdbcType=VARCHAR}, #{userLevel,jdbcType=INTEGER}, 
+      #{integral,jdbcType=INTEGER}, #{growthValue,jdbcType=INTEGER}, #{superman,jdbcType=INTEGER}, 
+      #{isDelete,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{birthmodify,jdbcType=INTEGER}, #{exp,jdbcType=INTEGER}, #{adress,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.provider.dto.User">
     insert into users
@@ -127,9 +135,6 @@
       </if>
       <if test="userPhone != null">
         user_phone,
-      </if>
-      <if test="userPassword != null">
-        user_password,
       </if>
       <if test="userSex != null">
         user_sex,
@@ -152,6 +157,21 @@
       <if test="isDelete != null">
         is_delete,
       </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="birthmodify != null">
+        birthmodify,
+      </if>
+      <if test="exp != null">
+        `exp`,
+      </if>
+      <if test="adress != null">
+        adress,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -162,9 +182,6 @@
       </if>
       <if test="userPhone != null">
         #{userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="userPassword != null">
-        #{userPassword,jdbcType=VARCHAR},
       </if>
       <if test="userSex != null">
         #{userSex,jdbcType=INTEGER},
@@ -187,6 +204,21 @@
       <if test="isDelete != null">
         #{isDelete,jdbcType=INTEGER},
       </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="birthmodify != null">
+        #{birthmodify,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null">
+        #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="adress != null">
+        #{adress,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.kgc.provider.dto.UserExample" resultType="java.lang.Long">
@@ -206,9 +238,6 @@
       </if>
       <if test="record.userPhone != null">
         user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userPassword != null">
-        user_password = #{record.userPassword,jdbcType=VARCHAR},
       </if>
       <if test="record.userSex != null">
         user_sex = #{record.userSex,jdbcType=INTEGER},
@@ -231,6 +260,21 @@
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=INTEGER},
       </if>
+      <if test="record.userPassword != null">
+        user_password = #{record.userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthmodify != null">
+        birthmodify = #{record.birthmodify,jdbcType=INTEGER},
+      </if>
+      <if test="record.exp != null">
+        `exp` = #{record.exp,jdbcType=INTEGER},
+      </if>
+      <if test="record.adress != null">
+        adress = #{record.adress,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -241,14 +285,18 @@
     set id = #{record.id,jdbcType=BIGINT},
       user_name = #{record.userName,jdbcType=VARCHAR},
       user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      user_password = #{record.userPassword,jdbcType=VARCHAR},
       user_sex = #{record.userSex,jdbcType=INTEGER},
       user_email = #{record.userEmail,jdbcType=VARCHAR},
       user_level = #{record.userLevel,jdbcType=INTEGER},
       integral = #{record.integral,jdbcType=INTEGER},
       growth_value = #{record.growthValue,jdbcType=INTEGER},
       superman = #{record.superman,jdbcType=INTEGER},
-      is_delete = #{record.isDelete,jdbcType=INTEGER}
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      user_password = #{record.userPassword,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      birthmodify = #{record.birthmodify,jdbcType=INTEGER},
+      `exp` = #{record.exp,jdbcType=INTEGER},
+      adress = #{record.adress,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -261,9 +309,6 @@
       </if>
       <if test="userPhone != null">
         user_phone = #{userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="userPassword != null">
-        user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
       <if test="userSex != null">
         user_sex = #{userSex,jdbcType=INTEGER},
@@ -286,6 +331,21 @@
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=INTEGER},
       </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="birthmodify != null">
+        birthmodify = #{birthmodify,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null">
+        `exp` = #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="adress != null">
+        adress = #{adress,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -293,14 +353,22 @@
     update users
     set user_name = #{userName,jdbcType=VARCHAR},
       user_phone = #{userPhone,jdbcType=VARCHAR},
-      user_password = #{userPassword,jdbcType=VARCHAR},
       user_sex = #{userSex,jdbcType=INTEGER},
       user_email = #{userEmail,jdbcType=VARCHAR},
       user_level = #{userLevel,jdbcType=INTEGER},
       integral = #{integral,jdbcType=INTEGER},
       growth_value = #{growthValue,jdbcType=INTEGER},
       superman = #{superman,jdbcType=INTEGER},
-      is_delete = #{isDelete,jdbcType=INTEGER}
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      birthmodify = #{birthmodify,jdbcType=INTEGER},
+      `exp` = #{exp,jdbcType=INTEGER},
+      adress = #{adress,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateExp">
+    update users
+     set `exp`=`exp`+10 where user_phone =#{phone}
   </update>
 </mapper>

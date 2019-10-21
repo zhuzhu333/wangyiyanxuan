@@ -9,5 +9,9 @@ public interface UserService {
 
     int register(User user);
 
-    User login(String userName,String userPassword);
+    User login(String phone,String userPassword);
+
+    int updateExp(String phone);
+
+    User searchUser(String phone);
 }

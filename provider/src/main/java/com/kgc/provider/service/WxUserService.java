@@ -8,4 +8,8 @@ import com.kgc.provider.dto.WxUser;
 public interface WxUserService {
 
     int add(WxUser wxUser);
+    public boolean isExit(WxUser wxUser);
+    WxUser getWxUser(String openId);
+    boolean bindPhone(String phone,String openId);
+    void bindUser(String phone);
 }

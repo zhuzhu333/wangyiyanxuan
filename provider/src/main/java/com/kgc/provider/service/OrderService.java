@@ -23,4 +23,6 @@ public interface OrderService {
 
     int updateGoodIntegral(int id,int score);
 
+
+
 }

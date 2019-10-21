@@ -72,4 +72,12 @@ public class ShowServiceImpl implements ShowService {
         }
         return 0;
     }
+
+    @Override
+    public int selectIntegral(String phone) {
+        UserExample userExample=new UserExample();
+        userExample.createCriteria().andUserPhoneEqualTo(phone);
+        List<User> list=userMapper.selectByExample(userExample);
+        return  list.get(0).getIntegral();
+    }
 }

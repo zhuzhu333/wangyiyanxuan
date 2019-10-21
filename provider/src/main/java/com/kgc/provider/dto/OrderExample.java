@@ -825,66 +825,6 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodAmountIsNull() {
-            addCriterion("good_amount is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountIsNotNull() {
-            addCriterion("good_amount is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountEqualTo(Integer value) {
-            addCriterion("good_amount =", value, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountNotEqualTo(Integer value) {
-            addCriterion("good_amount <>", value, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountGreaterThan(Integer value) {
-            addCriterion("good_amount >", value, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("good_amount >=", value, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountLessThan(Integer value) {
-            addCriterion("good_amount <", value, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountLessThanOrEqualTo(Integer value) {
-            addCriterion("good_amount <=", value, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountIn(List<Integer> values) {
-            addCriterion("good_amount in", values, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountNotIn(List<Integer> values) {
-            addCriterion("good_amount not in", values, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountBetween(Integer value1, Integer value2) {
-            addCriterion("good_amount between", value1, value2, "goodAmount");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodAmountNotBetween(Integer value1, Integer value2) {
-            addCriterion("good_amount not between", value1, value2, "goodAmount");
-            return (Criteria) this;
-        }
-
         public Criteria andGoodPriceIsNull() {
             addCriterion("good_price is null");
             return (Criteria) this;
@@ -942,6 +882,66 @@ public class OrderExample {
 
         public Criteria andGoodPriceNotBetween(Double value1, Double value2) {
             addCriterion("good_price not between", value1, value2, "goodPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountIsNull() {
+            addCriterion("good_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountIsNotNull() {
+            addCriterion("good_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountEqualTo(Integer value) {
+            addCriterion("good_amount =", value, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountNotEqualTo(Integer value) {
+            addCriterion("good_amount <>", value, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountGreaterThan(Integer value) {
+            addCriterion("good_amount >", value, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("good_amount >=", value, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountLessThan(Integer value) {
+            addCriterion("good_amount <", value, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountLessThanOrEqualTo(Integer value) {
+            addCriterion("good_amount <=", value, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountIn(List<Integer> values) {
+            addCriterion("good_amount in", values, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountNotIn(List<Integer> values) {
+            addCriterion("good_amount not in", values, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountBetween(Integer value1, Integer value2) {
+            addCriterion("good_amount between", value1, value2, "goodAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodAmountNotBetween(Integer value1, Integer value2) {
+            addCriterion("good_amount not between", value1, value2, "goodAmount");
             return (Criteria) this;
         }
     }

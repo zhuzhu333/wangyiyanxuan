@@ -1,6 +1,8 @@
 package com.kgc.provider.service;
 
+import com.kgc.provider.dto.Good;
 import com.kgc.provider.dto.GoodsGroup;
+import com.kgc.provider.dto.Order;
 
 import java.util.List;
 
@@ -14,4 +16,9 @@ import java.util.List;
  */
 public interface IndexService {
     public List<GoodsGroup> showGroup();
+    public  GoodsGroup selectByName(String groupName);
+    public List<Good> selectBySort(int goodSort,int sPage,int pSize);
+    public Good selectByGoodName(String goodName);
+    public Good selectHotGood();
+    public List<Good> getAllGoods(String goodName,int sPage,int pSize);
 }

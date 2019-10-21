@@ -43,11 +43,13 @@ public class UserController {
         if(null == obj){
             User user = new User();
             BeanUtils.copyProperties(userVo,user);
-            user.setUserLevel(1);
+            user.setUserLevel(0);
             user.setIntegral(0);
             user.setGrowthValue(0);
             user.setSuperman(0);
             user.setIsDelete(0);
+            user.setBirthmodify(0);
+            user.setExp(0);
             userService.register(user);
             redisUtils.set(namespace+userVo.getUserName(),userVo.getUserName());
             return ReturnResultUtils.returnSuccess();
@@ -57,15 +59,16 @@ public class UserController {
 
     @ApiOperation(value = "用户登录")
     @GetMapping(value = "login")
-    public ReturnResult login(@ApiParam(value = "用户名", required = true) @RequestParam(value = "userName") String userName,
+    public ReturnResult login(@ApiParam(value = "手机号", required = true) @RequestParam(value = "phone") String phone,
                               @ApiParam(value = "密码", required = true) @RequestParam(value = "userPassword") String userPassword,
                               @ApiParam(value = "是否同意", required = true, defaultValue = "1") @RequestParam(value = "isAgree") int isAgree,
                               HttpServletRequest request){
         String token = request.getSession().getId();
-        User user = userService.login(userName,userPassword);
+        User user = userService.login(phone,userPassword);
         if (null != user) {
             String str = JSONObject.toJSONString(user);
-            redisUtils.set(token, str, 180);
+            redisUtils.set(token, str, 600);
+            userService.updateExp(phone);
             return ReturnResultUtils.returnSuccess(token);
         }
         return ReturnResultUtils.returnFail(UserContant.USER_IS_LOGIN_FAIL_CODE, "用户名或密码错误！");

@@ -9,8 +9,6 @@ public class User implements Serializable {
 
     private String userPhone;
 
-    private String userPassword;
-
     private Integer userSex;
 
     private String userEmail;
@@ -24,6 +22,16 @@ public class User implements Serializable {
     private Integer superman;
 
     private Integer isDelete;
+
+    private String userPassword;
+
+    private String birthday;
+
+    private Integer birthmodify;
+
+    private Integer exp;
+
+    private String adress;
 
     public Long getId() {
         return id;
@@ -47,14 +55,6 @@ public class User implements Serializable {
 
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
     }
 
     public Integer getUserSex() {
@@ -111,5 +111,45 @@ public class User implements Serializable {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public Integer getBirthmodify() {
+        return birthmodify;
+    }
+
+    public void setBirthmodify(Integer birthmodify) {
+        this.birthmodify = birthmodify;
+    }
+
+    public Integer getExp() {
+        return exp;
+    }
+
+    public void setExp(Integer exp) {
+        this.exp = exp;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 }

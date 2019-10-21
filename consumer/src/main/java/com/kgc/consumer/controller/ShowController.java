@@ -1,9 +1,12 @@
 package com.kgc.consumer.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.kgc.consumer.config.custom.CurrentUser;
+import com.kgc.consumer.config.custom.LoginRequired;
 import com.kgc.consumer.utils.result.ReturnResult;
 import com.kgc.consumer.utils.result.ReturnResultUtils;
 import com.kgc.consumer.vo.GoodsVo;
+import com.kgc.consumer.vo.SumVo;
 import com.kgc.provider.dto.Good;
 import com.kgc.provider.service.ShowService;
 import io.swagger.annotations.Api;
@@ -27,11 +30,11 @@ public class ShowController {
     @Reference
     private ShowService showService;
 
-
+    @LoginRequired
     @GetMapping(value = "showGoods")
     @ApiOperation("商品")
     public ReturnResult showGoods(@ApiParam(value = "商品id", required = true)
-                                  @RequestParam(value = "gid") String gid) {
+                                  @RequestParam(value = "gid") String gid, @CurrentUser SumVo sumVo) {
         Good good = showService.showGoods(gid);
         GoodsVo goodsVo = new GoodsVo();
         BeanUtils.copyProperties(good, goodsVo);
@@ -50,6 +53,18 @@ public class ShowController {
         } else {
             goodsVo.setColor("还没有评价");
         }
+
+        //积分可抵扣额度
+        String phone;
+        if(null==sumVo.getPhone()){
+            phone=sumVo.getUserPhone();
+        }else {
+            phone=sumVo.getPhone();
+
+        }
+         int integral=showService.selectIntegral(phone);
+         double subPrice=integral/100;
+         goodsVo.setSubPrice(subPrice);
 
         Double CurrentStock = Double.valueOf(good.getCurrentStock());
         Double GoodStock = Double.valueOf(good.getGoodStock());

@@ -26,15 +26,9 @@ public class Order implements Serializable {
 
     private String address;
 
-    private Integer goodAmount;
-
     private Double goodPrice;
 
-    private Integer orderType;
-
-    private int startPage;
-
-    private int pageSize;
+    private Integer goodAmount;
 
     public Long getId() {
         return id;
@@ -124,14 +118,6 @@ public class Order implements Serializable {
         this.address = address;
     }
 
-    public Integer getGoodAmount() {
-        return goodAmount;
-    }
-
-    public void setGoodAmount(Integer goodAmount) {
-        this.goodAmount = goodAmount;
-    }
-
     public Double getGoodPrice() {
         return goodPrice;
     }
@@ -140,27 +126,11 @@ public class Order implements Serializable {
         this.goodPrice = goodPrice;
     }
 
-    public Integer getOrderType() {
-        return orderType;
+    public Integer getGoodAmount() {
+        return goodAmount;
     }
 
-    public void setOrderType(Integer orderType) {
-        this.orderType = orderType;
-    }
-
-    public int getStartPage() {
-        return startPage;
-    }
-
-    public void setStartPage(int startPage) {
-        this.startPage = startPage;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setGoodAmount(Integer goodAmount) {
+        this.goodAmount = goodAmount;
     }
 }
