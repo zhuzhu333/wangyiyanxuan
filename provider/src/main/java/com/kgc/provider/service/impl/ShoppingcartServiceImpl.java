@@ -41,4 +41,14 @@ public class ShoppingcartServiceImpl implements ShoppingcartService {
     public Shoppingcart selectByPrimaryKey(Long id) {
         return shoppingcartMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<Shoppingcart> selectByName(String name) {
+        return shoppingcartMapper.selectByName(name);
+    }
+
+    @Override
+    public int updateByGoodName(String goodname, Integer amount) {
+        return shoppingcartMapper.updateByGoodName(goodname,amount);
+    }
 }

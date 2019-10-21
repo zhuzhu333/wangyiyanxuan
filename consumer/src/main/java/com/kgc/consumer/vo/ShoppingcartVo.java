@@ -1,24 +1,26 @@
 package com.kgc.consumer.vo;
 
-import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 
 /**
  * Created By: YunCeng
  * Created on: 2019/10/17:19:59
  */
-public class ShoppingcartVo {
+public class ShoppingcartVo implements Serializable {
     private Long id;
-    @ApiModelProperty(value = "图片",required = true,example = "1")
+
+    private String username;
+
     private String goodImage;
-    @ApiModelProperty(value = "商品名字",required = true,example = "1")
+
     private String goodName;
-    @ApiModelProperty(value = "商品描述",required = true,example = "1")
+
     private String goodContent;
-    @ApiModelProperty(value = "商品价格",required = true,example = "1")
+
     private Double goodPrice;
-    @ApiModelProperty(value = "购买数量",required = true,example = "1")
+
     private Integer goodAmount;
-    @ApiModelProperty(value = "总价",required = true,example = "1")
+
     private Double totalPrice;
 
     public Long getId() {
@@ -75,5 +77,13 @@ public class ShoppingcartVo {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

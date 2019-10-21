@@ -66,6 +66,8 @@ public class WXPayController {
 
 
 
+
+
                 Map<String, String> rMap = Maps.newHashMap();
                 rMap.put("return_code", "SUCCESS");
                 rMap.put("return_msg", "OK");

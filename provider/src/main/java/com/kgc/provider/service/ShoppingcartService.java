@@ -15,5 +15,7 @@ public interface ShoppingcartService {
     int deleteByPrimaryKey(Long id);
     int updateByGoodAmount(long id,Integer amount);
     Shoppingcart selectByPrimaryKey(Long id);
+    List<Shoppingcart> selectByName(String name);
+    int updateByGoodName(String goodname,Integer amount);
 
 }

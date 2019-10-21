@@ -2,6 +2,7 @@ package com.kgc.consumer.custom;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.fastjson.JSONObject;
+
 import com.kgc.consumer.utils.RedisUtils;
 import com.kgc.provider.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,10 @@ import java.lang.reflect.Method;
 
 /**
  * Created By: YunCeng
- * Created on: 2019/10/18:17:17
+ * Created on: 2019/10/19:13:55
  */
-public class CheckInfoComplete implements HandlerInterceptor {
-    /*怎么和它的接口映射的？*/
+public class LoginReqComplete implements HandlerInterceptor {
+
     @Autowired
     private RedisUtils redisUtils;
 
@@ -29,47 +30,23 @@ public class CheckInfoComplete implements HandlerInterceptor {
         }
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         Method method = handlerMethod.getMethod();
-        //（本质）判断方法上有没有写上自定义注解,这里是判断接口是否需要登录
-        CheckInfo methodAnnotation = method.getAnnotation(CheckInfo.class);
-        if (methodAnnotation != null){
+        // 判断接口是否需要登录，本质是判断方法上有没有写上自定义注解
+        LoginRequired methodAnnotation = method.getAnnotation(LoginRequired.class);
+        if (methodAnnotation != null) {
             String token = request.getHeader("token");  // 从 http 请求头中取出 token
-
-            if(!StringUtils.isBlank(token)){
-                //登录检查
-                String userToken=(String) redisUtils.get("token");
-
-                if(!StringUtils.isBlank(userToken)){
-
+            if (!StringUtils.isBlank(token)) {
+              String userToken = (String) redisUtils.get(token);
+                if (StringUtils.isBlank(userToken)) {
+                    throw new RuntimeException("login error");
+                } else {
                     User user = JSONObject.parseObject(userToken, User.class);
                     request.setAttribute("userToken", user);
-
-
-
-                    //地址检查
-
-
-
-                    //手机号检查
-
-
-                    //收件人姓名检查
-
-
-
-                    return true;
-                }else{
-                    return false;
                 }
-
-
-
-
-            }else{
-                return false;
-            }
+            } else {
+                //throw new BusinessException(BusinessEnum.TOKEN_IS_NULL,"token is blank");
+                 }
+        return true;
         }
-
-
         return true;
     }
 

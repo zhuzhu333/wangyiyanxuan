@@ -83,4 +83,12 @@ public class ShowController {
     }
 
 
+    /*------------云层-------------*/
+    public String goPay(){
+        return "";
+    }
+
+
+
+
 }
