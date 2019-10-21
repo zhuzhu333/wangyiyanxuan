@@ -21,4 +21,5 @@ public interface IndexService {
     public Good selectByGoodName(String goodName);
     public Good selectHotGood();
     public List<Good> getAllGoods(String goodName,int sPage,int pSize);
+    public Good randomGood();
 }

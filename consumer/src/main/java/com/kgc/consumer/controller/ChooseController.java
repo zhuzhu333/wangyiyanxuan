@@ -55,7 +55,8 @@ public class ChooseController {
     @GetMapping(value = "/chooseGood")
     @LoginRequired
     public ReturnResult chooseGood(@ApiParam(value = "商品id", required = true) @RequestParam(value = "gid") String gid,
-                                   @ApiParam(value = "购买数量", required = true) @RequestParam(value = "amount") int amount, @CurrentUser SumVo sumVo) {
+                                   @ApiParam(value = "购买数量", required = true) @RequestParam(value = "amount") int amount,
+                                   @CurrentUser SumVo sumVo) {
         Good good = showService.showGoods(gid);
         ChooseGoodsVo chooseVo = new ChooseGoodsVo();
         BeanUtils.copyProperties(good, chooseVo);
@@ -68,7 +69,7 @@ public class ChooseController {
             phone = sumVo.getPhone();
         }
         int integral = showService.selectIntegral(phone);
-        chooseVo.setFreight(integral / 100);
+        chooseVo.setSubPrice(integral / 100);
 
         //运费
         if (sumVo.getSuperman() == 1) {

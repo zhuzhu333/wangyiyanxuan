@@ -9,6 +9,7 @@ import com.kgc.consumer.contants.GoodContant;
 import com.kgc.consumer.utils.RedisUtils;
 import com.kgc.consumer.utils.result.ReturnResult;
 import com.kgc.consumer.utils.result.ReturnResultUtils;
+import com.kgc.consumer.vo.GoodDetails;
 import com.kgc.consumer.vo.GoodsVo;
 import com.kgc.consumer.vo.PageVo;
 import com.kgc.provider.dto.Good;
@@ -64,7 +65,8 @@ public class indexController {
 
     @ApiOperation(value = "showGoods")
     @GetMapping(value = "/showGoods")
-    public ReturnResult<List> showGoods(@ApiParam(value = "group", required = true) @RequestParam(value = "group", required = true) String group, @Valid PageVo pageVo) {
+    public ReturnResult<List> showGoods(@ApiParam(value = "group", required = true) @RequestParam(value = "group", required = true) String group, @Valid PageVo pageVo,
+                                        @ApiParam(value = "ip", required = true) @RequestParam(value = "ip", required = true)String ip) {
         GoodsGroup goodsGroup = indexService.selectByName(group);
         String goodSort = goodsGroup.getGoodSort();
         List<Good> goods = indexService.selectBySort(Integer.parseInt(goodSort), pageVo.getsPage(), pageVo.getpSize());
@@ -72,6 +74,15 @@ public class indexController {
         goods.forEach(obj -> {
             goodNames.add(obj.getGoodName());
         });
+        GoodDetails goodDetails=new GoodDetails();
+        //插入商品分页信息
+        goodDetails.setGoodNames(goodNames);
+        //插入商品搜索框默认商品
+        goodDetails.setDefaultName(indexService.randomGood().getGoodName());
+        //计算购物车商品数量
+        String token = (String) redisUtils.get(ip);
+        List<Shoppingcart> list = JSONArray.parseArray(token, Shoppingcart.class);
+        goodDetails.setGoodNumber(list.size());
         return ReturnResultUtils.returnSuccess(goodNames);
     }
 
@@ -84,6 +95,7 @@ public class indexController {
         BeanUtils.copyProperties(good, shoppingcart);
         //
         HttpSession session = request.getSession();
+
         String sessionId = session.getId();
         String shoppingCartStr = (String) redisUtils.get(GoodContant.GOU_WU_CHE + sessionId);
 
@@ -146,7 +158,6 @@ public class indexController {
             goodsVoList.add(goodsVo);
         });
         return ReturnResultUtils.returnSuccess(goodsVoList);
-
     }
 
 }

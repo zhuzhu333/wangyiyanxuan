@@ -7,6 +7,7 @@ import com.kgc.provider.mapper.GoodsGroupMapper;
 import com.kgc.provider.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,4 +67,18 @@ public class IndexServiceImpl implements IndexService {
     public List<Good> getAllGoods(String goodName, int sPage, int pSize) {
         return goodMapper.getAllGoods(goodName,sPage,pSize);
     }
+
+    @Override
+    public Good randomGood() {
+        int i=(int)(Math.random() % 3) + 1;
+        List exampleList=new ArrayList();
+        exampleList.add("good_stock");
+        exampleList.add("good_sales");
+        exampleList.add("update_time");
+        String example=(String) exampleList.get(i);
+        Good good=goodMapper.selectRandom(example);
+        return good;
+    }
+
+
 }

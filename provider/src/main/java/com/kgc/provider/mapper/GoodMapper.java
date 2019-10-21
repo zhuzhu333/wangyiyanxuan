@@ -96,5 +96,6 @@ public interface GoodMapper {
     List<Good> selectBySort(@Param("goodSort") int goodSort,@Param("sPage") int sPage,@Param("pSize") int pSize);
     Good selectHotGood();
     Good selectNewDate();
+    Good selectRandom(@Param("example")String example);
     List<Good> getAllGoods(@Param("goodName") String goodName,@Param("sPage") int sPage,@Param("pSize") int pSize);
 }

@@ -410,4 +410,7 @@
     <select id="getAllGoods" resultMap="BaseResultMap">
     select * from goods where good_name like concat('%',#{goodName},'%') limit #{sPage},#{pSize}
     </select>
+    <select id="selectRandom" resultType="com.kgc.provider.dto.Good">
+        SELECT * FROM goods ORDER BY #{example} DESC LIMIT 1
+    </select>
 </mapper>
