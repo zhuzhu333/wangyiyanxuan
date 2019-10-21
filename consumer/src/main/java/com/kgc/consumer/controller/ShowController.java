@@ -27,8 +27,7 @@ public class ShowController {
 
     @Reference
     private ShowService showService;
-
-    @LoginRequired
+ 
     @GetMapping(value = "showGoods")
     @ApiOperation("商品")
     public ReturnResult showGoods(@ApiParam(value = "商品id", required = true)
@@ -40,9 +39,9 @@ public class ShowController {
             goodsVo.setRate(showService.highPraise(gid) / showService.totalOrder(gid) * 100);
             if (goodsVo.getRate() >= 90) {
                 goodsVo.setColor("red");
-            } else if (goodsVo.getRate() <= 90 && goodsVo.getRate() >= 60) {
+            } else if (goodsVo.getRate() <= 90 && goodsVo.getRate() >= 70) {
                 goodsVo.setColor("green");
-            } else {
+            } else if(goodsVo.getRate() <= 50){
                 goodsVo.setColor("black");
             }
         } else {

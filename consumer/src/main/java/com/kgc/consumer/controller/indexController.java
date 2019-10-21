@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kgc.consumer.contants.GoodContant;
+import com.kgc.consumer.utils.GetClientIpAddr;
 import com.kgc.consumer.utils.RedisUtils;
 import com.kgc.consumer.utils.result.ReturnResult;
 import com.kgc.consumer.utils.result.ReturnResultUtils;
@@ -83,9 +84,8 @@ public class indexController {
         Shoppingcart shoppingcart = new Shoppingcart();
         BeanUtils.copyProperties(good, shoppingcart);
         //
-        HttpSession session = request.getSession();
-        String sessionId = session.getId();
-        String shoppingCartStr = (String) redisUtils.get(GoodContant.GOU_WU_CHE + sessionId);
+        String ip = GetClientIpAddr.getClientIp(request);
+        String shoppingCartStr = (String) redisUtils.get(GoodContant.GOU_WU_CHE + ip);
 
         List<Shoppingcart> list = JSONArray.parseArray(shoppingCartStr, Shoppingcart.class);
         boolean isExit = false;
@@ -103,17 +103,17 @@ public class indexController {
                 shoppingcart.setGoodAmount(1);
                 list.add(shoppingcart);
                 String relist = JSON.toJSONString(list);
-                redisUtils.set(GoodContant.GOU_WU_CHE + sessionId, relist);
+                redisUtils.set(GoodContant.GOU_WU_CHE + ip, relist);
             } else {
                 String relist = JSON.toJSONString(list);
-                redisUtils.set(GoodContant.GOU_WU_CHE + sessionId, relist);
+                redisUtils.set(GoodContant.GOU_WU_CHE + ip, relist);
             }
         } else {
             List<Shoppingcart> flist = new ArrayList<>();
             shoppingcart.setGoodAmount(1);
             flist.add(shoppingcart);
             String relist = JSON.toJSONString(flist);
-            redisUtils.set(GoodContant.GOU_WU_CHE + sessionId, relist, 3000);
+            redisUtils.set(GoodContant.GOU_WU_CHE + ip, relist, 3000);
         }
     }
 
@@ -146,7 +146,6 @@ public class indexController {
             goodsVoList.add(goodsVo);
         });
         return ReturnResultUtils.returnSuccess(goodsVoList);
-
     }
 
 }

@@ -1,116 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kgc.provider.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.kgc.provider.dto.User">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
-    <result column="user_sex" jdbcType="INTEGER" property="userSex" />
-    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
-    <result column="user_level" jdbcType="INTEGER" property="userLevel" />
-    <result column="integral" jdbcType="INTEGER" property="integral" />
-    <result column="growth_value" jdbcType="INTEGER" property="growthValue" />
-    <result column="superman" jdbcType="INTEGER" property="superman" />
-    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
-    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
-    <result column="birthmodify" jdbcType="INTEGER" property="birthmodify" />
-    <result column="exp" jdbcType="INTEGER" property="exp" />
-    <result column="adress" jdbcType="VARCHAR" property="adress" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.kgc.provider.dto.User">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="user_sex" jdbcType="INTEGER" property="userSex"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_level" jdbcType="INTEGER" property="userLevel"/>
+        <result column="integral" jdbcType="INTEGER" property="integral"/>
+        <result column="growth_value" jdbcType="INTEGER" property="growthValue"/>
+        <result column="superman" jdbcType="INTEGER" property="superman"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+        <result column="birthmodify" jdbcType="INTEGER" property="birthmodify"/>
+        <result column="exp" jdbcType="INTEGER" property="exp"/>
+        <result column="adress" jdbcType="VARCHAR" property="adress"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     id, user_name, user_phone, user_sex, user_email, user_level, integral, growth_value, 
     superman, is_delete, user_password, birthday, birthmodify, `exp`, adress
   </sql>
-  <select id="selectByExample" parameterType="com.kgc.provider.dto.UserExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from users
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from users
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="selectByExample" parameterType="com.kgc.provider.dto.UserExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from users
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from users
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.kgc.provider.dto.UserExample">
-    delete from users
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.kgc.provider.dto.User">
+    <delete id="deleteByExample" parameterType="com.kgc.provider.dto.UserExample">
+        delete from users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.kgc.provider.dto.User">
     insert into users (id, user_name, user_phone, 
       user_sex, user_email, user_level, 
       integral, growth_value, superman, 
@@ -124,232 +126,232 @@
       #{birthmodify,jdbcType=INTEGER}, #{exp,jdbcType=INTEGER}, #{adress,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.kgc.provider.dto.User">
-    insert into users
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="userName != null">
-        user_name,
-      </if>
-      <if test="userPhone != null">
-        user_phone,
-      </if>
-      <if test="userSex != null">
-        user_sex,
-      </if>
-      <if test="userEmail != null">
-        user_email,
-      </if>
-      <if test="userLevel != null">
-        user_level,
-      </if>
-      <if test="integral != null">
-        integral,
-      </if>
-      <if test="growthValue != null">
-        growth_value,
-      </if>
-      <if test="superman != null">
-        superman,
-      </if>
-      <if test="isDelete != null">
-        is_delete,
-      </if>
-      <if test="userPassword != null">
-        user_password,
-      </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="birthmodify != null">
-        birthmodify,
-      </if>
-      <if test="exp != null">
-        `exp`,
-      </if>
-      <if test="adress != null">
-        adress,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userPhone != null">
-        #{userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="userSex != null">
-        #{userSex,jdbcType=INTEGER},
-      </if>
-      <if test="userEmail != null">
-        #{userEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="userLevel != null">
-        #{userLevel,jdbcType=INTEGER},
-      </if>
-      <if test="integral != null">
-        #{integral,jdbcType=INTEGER},
-      </if>
-      <if test="growthValue != null">
-        #{growthValue,jdbcType=INTEGER},
-      </if>
-      <if test="superman != null">
-        #{superman,jdbcType=INTEGER},
-      </if>
-      <if test="isDelete != null">
-        #{isDelete,jdbcType=INTEGER},
-      </if>
-      <if test="userPassword != null">
-        #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="birthmodify != null">
-        #{birthmodify,jdbcType=INTEGER},
-      </if>
-      <if test="exp != null">
-        #{exp,jdbcType=INTEGER},
-      </if>
-      <if test="adress != null">
-        #{adress,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.kgc.provider.dto.UserExample" resultType="java.lang.Long">
-    select count(*) from users
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update users
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.userName != null">
+    <insert id="insertSelective" parameterType="com.kgc.provider.dto.User">
+        insert into users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userPhone != null">
+                user_phone,
+            </if>
+            <if test="userSex != null">
+                user_sex,
+            </if>
+            <if test="userEmail != null">
+                user_email,
+            </if>
+            <if test="userLevel != null">
+                user_level,
+            </if>
+            <if test="integral != null">
+                integral,
+            </if>
+            <if test="growthValue != null">
+                growth_value,
+            </if>
+            <if test="superman != null">
+                superman,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="userPassword != null">
+                user_password,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="birthmodify != null">
+                birthmodify,
+            </if>
+            <if test="exp != null">
+                `exp`,
+            </if>
+            <if test="adress != null">
+                adress,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userSex != null">
+                #{userSex,jdbcType=INTEGER},
+            </if>
+            <if test="userEmail != null">
+                #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userLevel != null">
+                #{userLevel,jdbcType=INTEGER},
+            </if>
+            <if test="integral != null">
+                #{integral,jdbcType=INTEGER},
+            </if>
+            <if test="growthValue != null">
+                #{growthValue,jdbcType=INTEGER},
+            </if>
+            <if test="superman != null">
+                #{superman,jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=INTEGER},
+            </if>
+            <if test="userPassword != null">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="birthmodify != null">
+                #{birthmodify,jdbcType=INTEGER},
+            </if>
+            <if test="exp != null">
+                #{exp,jdbcType=INTEGER},
+            </if>
+            <if test="adress != null">
+                #{adress,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.kgc.provider.dto.UserExample" resultType="java.lang.Long">
+        select count(*) from users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update users
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.userName != null">
+                user_name = #{record.userName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userPhone != null">
+                user_phone = #{record.userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userSex != null">
+                user_sex = #{record.userSex,jdbcType=INTEGER},
+            </if>
+            <if test="record.userEmail != null">
+                user_email = #{record.userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userLevel != null">
+                user_level = #{record.userLevel,jdbcType=INTEGER},
+            </if>
+            <if test="record.integral != null">
+                integral = #{record.integral,jdbcType=INTEGER},
+            </if>
+            <if test="record.growthValue != null">
+                growth_value = #{record.growthValue,jdbcType=INTEGER},
+            </if>
+            <if test="record.superman != null">
+                superman = #{record.superman,jdbcType=INTEGER},
+            </if>
+            <if test="record.isDelete != null">
+                is_delete = #{record.isDelete,jdbcType=INTEGER},
+            </if>
+            <if test="record.userPassword != null">
+                user_password = #{record.userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="record.birthday != null">
+                birthday = #{record.birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="record.birthmodify != null">
+                birthmodify = #{record.birthmodify,jdbcType=INTEGER},
+            </if>
+            <if test="record.exp != null">
+                `exp` = #{record.exp,jdbcType=INTEGER},
+            </if>
+            <if test="record.adress != null">
+                adress = #{record.adress,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update users
+        set id = #{record.id,jdbcType=BIGINT},
         user_name = #{record.userName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userPhone != null">
         user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userSex != null">
         user_sex = #{record.userSex,jdbcType=INTEGER},
-      </if>
-      <if test="record.userEmail != null">
         user_email = #{record.userEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userLevel != null">
         user_level = #{record.userLevel,jdbcType=INTEGER},
-      </if>
-      <if test="record.integral != null">
         integral = #{record.integral,jdbcType=INTEGER},
-      </if>
-      <if test="record.growthValue != null">
         growth_value = #{record.growthValue,jdbcType=INTEGER},
-      </if>
-      <if test="record.superman != null">
         superman = #{record.superman,jdbcType=INTEGER},
-      </if>
-      <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=INTEGER},
-      </if>
-      <if test="record.userPassword != null">
         user_password = #{record.userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="record.birthday != null">
         birthday = #{record.birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="record.birthmodify != null">
         birthmodify = #{record.birthmodify,jdbcType=INTEGER},
-      </if>
-      <if test="record.exp != null">
         `exp` = #{record.exp,jdbcType=INTEGER},
-      </if>
-      <if test="record.adress != null">
-        adress = #{record.adress,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update users
-    set id = #{record.id,jdbcType=BIGINT},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      user_sex = #{record.userSex,jdbcType=INTEGER},
-      user_email = #{record.userEmail,jdbcType=VARCHAR},
-      user_level = #{record.userLevel,jdbcType=INTEGER},
-      integral = #{record.integral,jdbcType=INTEGER},
-      growth_value = #{record.growthValue,jdbcType=INTEGER},
-      superman = #{record.superman,jdbcType=INTEGER},
-      is_delete = #{record.isDelete,jdbcType=INTEGER},
-      user_password = #{record.userPassword,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=VARCHAR},
-      birthmodify = #{record.birthmodify,jdbcType=INTEGER},
-      `exp` = #{record.exp,jdbcType=INTEGER},
-      adress = #{record.adress,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.provider.dto.User">
-    update users
-    <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userPhone != null">
-        user_phone = #{userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="userSex != null">
-        user_sex = #{userSex,jdbcType=INTEGER},
-      </if>
-      <if test="userEmail != null">
-        user_email = #{userEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="userLevel != null">
-        user_level = #{userLevel,jdbcType=INTEGER},
-      </if>
-      <if test="integral != null">
-        integral = #{integral,jdbcType=INTEGER},
-      </if>
-      <if test="growthValue != null">
-        growth_value = #{growthValue,jdbcType=INTEGER},
-      </if>
-      <if test="superman != null">
-        superman = #{superman,jdbcType=INTEGER},
-      </if>
-      <if test="isDelete != null">
-        is_delete = #{isDelete,jdbcType=INTEGER},
-      </if>
-      <if test="userPassword != null">
-        user_password = #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="birthmodify != null">
-        birthmodify = #{birthmodify,jdbcType=INTEGER},
-      </if>
-      <if test="exp != null">
-        `exp` = #{exp,jdbcType=INTEGER},
-      </if>
-      <if test="adress != null">
-        adress = #{adress,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.kgc.provider.dto.User">
+        adress = #{record.adress,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kgc.provider.dto.User">
+        update users
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                user_phone = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userSex != null">
+                user_sex = #{userSex,jdbcType=INTEGER},
+            </if>
+            <if test="userEmail != null">
+                user_email = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userLevel != null">
+                user_level = #{userLevel,jdbcType=INTEGER},
+            </if>
+            <if test="integral != null">
+                integral = #{integral,jdbcType=INTEGER},
+            </if>
+            <if test="growthValue != null">
+                growth_value = #{growthValue,jdbcType=INTEGER},
+            </if>
+            <if test="superman != null">
+                superman = #{superman,jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=INTEGER},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="birthmodify != null">
+                birthmodify = #{birthmodify,jdbcType=INTEGER},
+            </if>
+            <if test="exp != null">
+                `exp` = #{exp,jdbcType=INTEGER},
+            </if>
+            <if test="adress != null">
+                adress = #{adress,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.kgc.provider.dto.User">
     update users
     set user_name = #{userName,jdbcType=VARCHAR},
       user_phone = #{userPhone,jdbcType=VARCHAR},
@@ -367,12 +369,12 @@
       adress = #{adress,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateExp">
+    <update id="updateExp">
     update users
      set `exp`=`exp`+10 where user_phone =#{phone}
   </update>
-  <update id="updateIntergral">
+    <update id="updateIntergral">
     update users
-     set integral = integral+#{reIntegral} where user_phone =#{phone}
+     set integral = #{reIntegral} where user_phone =#{phone}
   </update>
 </mapper>

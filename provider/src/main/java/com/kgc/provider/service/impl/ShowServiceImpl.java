@@ -39,7 +39,7 @@ public class ShowServiceImpl implements ShowService {
         if (null != goodList) {
             Good good = new Good();
             BeanUtils.copyProperties(goodList.get(0), good);
-            good.setGoodPrice(goodList.get(0).getGoodPrice() * 0.98);
+            good.setGoodPrice(goodList.get(0).getGoodPrice());
             return good;
         }
         return null;
