@@ -38,4 +38,5 @@ public interface OrderMapper {
     int isDel(int id);
 
     int updateGoodIntegral(int id,int score);
+    int cutStock(String phone);
 }

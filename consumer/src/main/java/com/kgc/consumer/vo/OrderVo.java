@@ -14,6 +14,15 @@ public class OrderVo implements Serializable {
     private Double goodPrice;
     private String goodId;
     private int goodsAmount;
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public int getGoodsAmount() {
         return goodsAmount;
@@ -33,7 +42,6 @@ public class OrderVo implements Serializable {
     public void setGoodId(String goodId) {
         this.goodId = goodId;
     }
-
 
 
     public String getUsername() {
@@ -91,4 +99,5 @@ public class OrderVo implements Serializable {
     public void setGoodPrice(Double goodPrice) {
         this.goodPrice = goodPrice;
     }
+
 }

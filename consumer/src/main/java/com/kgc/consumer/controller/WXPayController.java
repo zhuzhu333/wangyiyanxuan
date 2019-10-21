@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @Api(tags = "微信支付")
 @RestController
-@RequestMapping(value ="/wxPay")
+@RequestMapping(value = "/wxPay")
 public class WXPayController {
     @Autowired
     private WXPayServiceApi wxPayServiceApi;
@@ -41,7 +41,7 @@ public class WXPayController {
 
     @ApiOperation(value = "回调")
     @RequestMapping(value = "/wxPayNotify")
-    public void wxPayNotify(HttpServletRequest request, HttpServletResponse response)throws Exception{
+    public void wxPayNotify(HttpServletRequest request, HttpServletResponse response) throws Exception {
         InputStream inputStream = request.getInputStream();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
         StringBuffer sb = new StringBuffer();
@@ -59,13 +59,6 @@ public class WXPayController {
             if (isCheckSign) {
                 //todo
                 //xxxx();
-
-
-
-
-
-
-
 
 
                 Map<String, String> rMap = Maps.newHashMap();

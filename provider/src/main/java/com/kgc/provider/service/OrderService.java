@@ -1,5 +1,6 @@
 package com.kgc.provider.service;
 
+import com.kgc.provider.dto.Good;
 import com.kgc.provider.dto.Order;
 
 import java.util.List;
@@ -22,6 +23,10 @@ public interface OrderService {
     int delRecycle();
 
 
+
+    Good isExist(String goodId);
+
+    void cutStock(String phone);
 
 
 

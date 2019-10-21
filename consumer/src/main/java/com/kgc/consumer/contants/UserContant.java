@@ -27,4 +27,9 @@ public final class UserContant {
     public static final int USER_NOT_MEMBER_CODE = 605;
     public static final String USER_NOT_MEMBER ="您不是会员！";
     public static final String USER_IS_MEMBER="您是会员！";
+    public static final String USER_BUY="USER_BUY";
+    public static final String BUY_SUCCESS="抢购成功！";
+    public static final String BUY_FAIL="抢购失败！";
+    public static final String STOCK_NULL="库存不足！";
+
 }

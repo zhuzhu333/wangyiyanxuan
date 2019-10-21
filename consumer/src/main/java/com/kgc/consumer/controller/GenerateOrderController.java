@@ -29,11 +29,10 @@ public class GenerateOrderController {
     private OrderService orderService;
 
 
-
     @ApiOperation("生成订单")
     @GetMapping(value = "/generateOrder")
-    public ReturnResult generateOrder(@Valid OrderVo orderVo){
-        Order order=new Order();
+    public ReturnResult generateOrder(@Valid OrderVo orderVo) {
+        Order order = new Order();
         order.setGoodId(orderVo.getGoodId());
         order.setAddress(orderVo.getAddress());
         order.setGoodName(orderVo.getGoodName());
@@ -45,7 +44,7 @@ public class GenerateOrderController {
         order.setIsDelete(0);
         order.setGoodIntegral(9);
         order.setGoodAmount(orderVo.getGoodsAmount());
-        order.setGoodPrice(orderVo.getGoodPrice()*orderVo.getGoodsAmount());
+        order.setGoodPrice(orderVo.getGoodPrice() * orderVo.getGoodsAmount());
         orderService.addOrder(order);
         return ReturnResultUtils.returnSuccess(order);
     }

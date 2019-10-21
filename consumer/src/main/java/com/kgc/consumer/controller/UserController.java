@@ -37,12 +37,12 @@ public class UserController {
 
     @ApiOperation(value = "用户注册")
     @GetMapping(value = "/register")
-    public ReturnResult register(@Valid UserVo userVo){
+    public ReturnResult register(@Valid UserVo userVo) {
         String namespace = UserContant.REDIS_USER_LOGIN_NAME_SPACE;
-        Object obj = redisUtils.get(namespace+userVo.getUserName());
-        if(null == obj){
+        Object obj = redisUtils.get(namespace + userVo.getUserName());
+        if (null == obj) {
             User user = new User();
-            BeanUtils.copyProperties(userVo,user);
+            BeanUtils.copyProperties(userVo, user);
             user.setUserLevel(0);
             user.setIntegral(0);
             user.setGrowthValue(0);
@@ -51,10 +51,10 @@ public class UserController {
             user.setBirthmodify(0);
             user.setExp(0);
             userService.register(user);
-            redisUtils.set(namespace+userVo.getUserName(),userVo.getUserName());
+            redisUtils.set(namespace + userVo.getUserName(), userVo.getUserName());
             return ReturnResultUtils.returnSuccess();
         }
-        return ReturnResultUtils.returnFail(UserContant.USER_IS_REGISTER_FAIL_CODE,"用户已存在！");
+        return ReturnResultUtils.returnFail(UserContant.USER_IS_REGISTER_FAIL_CODE, "用户已存在！");
     }
 
     @ApiOperation(value = "用户登录")
@@ -62,9 +62,9 @@ public class UserController {
     public ReturnResult login(@ApiParam(value = "手机号", required = true) @RequestParam(value = "phone") String phone,
                               @ApiParam(value = "密码", required = true) @RequestParam(value = "userPassword") String userPassword,
                               @ApiParam(value = "是否同意", required = true, defaultValue = "1") @RequestParam(value = "isAgree") int isAgree,
-                              HttpServletRequest request){
+                              HttpServletRequest request) {
         String token = request.getSession().getId();
-        User user = userService.login(phone,userPassword);
+        User user = userService.login(phone, userPassword);
         if (null != user) {
             String str = JSONObject.toJSONString(user);
             redisUtils.set(token, str, 600);

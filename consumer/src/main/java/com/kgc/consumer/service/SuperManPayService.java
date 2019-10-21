@@ -26,7 +26,7 @@ public class SuperManPayService {
     @Autowired
     private WXPayModel wxPayModel;
 
-    public String wxPay(SuperManVo superManVo) throws Exception {
+    public String wxPay(SuperManVo superManVo,String phone) throws Exception {
 
         SortedMap<String, String> param = new TreeMap<String, String>();
         param.put("appid", wxPayModel.getAppid());
@@ -38,6 +38,7 @@ public class SuperManPayService {
         param.put("spbill_create_ip", "192.168.1.187");
         param.put("notify_url", wxPayModel.getNotifyurl());
         param.put("trade_type", wxPayModel.getType());
+        param.put("detail",phone);
         String sign = WxPayUtils.generateSignature(param, wxPayModel.getKey());
         param.put("sign", sign);
         //将map转成xml

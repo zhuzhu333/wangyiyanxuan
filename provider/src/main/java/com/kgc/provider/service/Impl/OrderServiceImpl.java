@@ -1,10 +1,14 @@
 package com.kgc.provider.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.kgc.provider.dto.Good;
+import com.kgc.provider.dto.GoodExample;
 import com.kgc.provider.dto.Order;
 import com.kgc.provider.dto.OrderExample;
+import com.kgc.provider.mapper.GoodMapper;
 import com.kgc.provider.mapper.OrderMapper;
 import com.kgc.provider.service.OrderService;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -17,6 +21,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private GoodMapper goodMapper;
 
     public int addOrder(Order order){
         return orderMapper.insertSelective(order);
@@ -57,6 +63,21 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         return 0;
+    }
+
+    @Override
+    public Good isExist(String goodId) {
+        Good good=new Good();
+        GoodExample goodExample=new GoodExample();
+        goodExample.createCriteria().andGoodIdEqualTo(goodId);
+        List<Good> list=goodMapper.selectByExample(goodExample);
+        return list.get(0);
+
+    }
+
+    @Override
+    public void cutStock(String phone) {
+
     }
 
 }

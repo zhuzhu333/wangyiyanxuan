@@ -83,7 +83,10 @@ public class PersonnalServiceImpl implements PersonnalService {
         MemberExample memberExample=new MemberExample();
         memberExample.createCriteria().andPhoneEqualTo(phone);
         List<Member> list=memberMapper.selectByExample(memberExample);
-        return list.get(0);
+        if(!list.isEmpty()){
+          return   list.get(0);
+        }
+        return null;
     }
 
 }

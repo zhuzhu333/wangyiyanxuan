@@ -429,9 +429,7 @@
     <if test="goodPrice != null">
       and good_price = #{goodPrice,jdbcType=DOUBLE},
     </if>
-    <if test="orderType != null">
-      and order_type = #{orderType,jdbcType=INTEGER},
-    </if>
+
   </select>
 
   <update id="isDel" parameterType="int">
@@ -444,5 +442,10 @@
     update orders
     set good_integral = #{score,jdbcType=INTEGER},
     where id = #{id}
+  </update>
+
+  <update id="cutStock">
+   update orders
+    set good_stock=good_stock-1 where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

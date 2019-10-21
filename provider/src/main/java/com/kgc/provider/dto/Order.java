@@ -30,6 +30,10 @@ public class Order implements Serializable {
 
     private Integer goodAmount;
 
+    private int startPage;
+
+    private int pageSize;
+
     public Long getId() {
         return id;
     }
@@ -132,5 +136,21 @@ public class Order implements Serializable {
 
     public void setGoodAmount(Integer goodAmount) {
         this.goodAmount = goodAmount;
+    }
+
+    public int getStartPage() {
+        return startPage;
+    }
+
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 }
