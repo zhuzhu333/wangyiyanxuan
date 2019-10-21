@@ -371,4 +371,8 @@
     update users
      set `exp`=`exp`+10 where user_phone =#{phone}
   </update>
+  <update id="updateIntergral">
+    update users
+     set integral = integral+#{reIntegral} where user_phone =#{phone}
+  </update>
 </mapper>

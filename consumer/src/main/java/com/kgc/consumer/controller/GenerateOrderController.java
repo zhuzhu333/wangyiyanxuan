@@ -17,9 +17,8 @@ import javax.validation.Valid;
 import java.util.Date;
 
 /**
- * Created By: YunCeng
- * Created on: 2019/10/19:11:32
- * 生成订单
+ * Created BY: WYM
+ * Created on: 2019/10/17 18:54
  */
 @Api(tags = "去付款")
 @RestController

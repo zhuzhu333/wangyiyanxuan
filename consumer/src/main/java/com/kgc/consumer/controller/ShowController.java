@@ -38,9 +38,6 @@ public class ShowController {
         Good good = showService.showGoods(gid);
         GoodsVo goodsVo = new GoodsVo();
         BeanUtils.copyProperties(good, goodsVo);
-        //User user = new User();
-        goodsVo.setReIntegral(new Double(good.getGoodPrice() * 0.1).intValue());
-        //goodsVo.setSubPrice(user.getIntegral() / 100);
         if (showService.highPraise(gid) != 0 && showService.totalOrder(gid) != 0) {
             goodsVo.setRate(showService.highPraise(gid) / showService.totalOrder(gid) * 100);
             if (goodsVo.getRate() >= 90) {
@@ -53,18 +50,6 @@ public class ShowController {
         } else {
             goodsVo.setColor("还没有评价");
         }
-
-        //积分可抵扣额度
-        String phone;
-        if(null==sumVo.getPhone()){
-            phone=sumVo.getUserPhone();
-        }else {
-            phone=sumVo.getPhone();
-
-        }
-         int integral=showService.selectIntegral(phone);
-         double subPrice=integral/100;
-         goodsVo.setSubPrice(subPrice);
 
         Double CurrentStock = Double.valueOf(good.getCurrentStock());
         Double GoodStock = Double.valueOf(good.getGoodStock());
@@ -81,14 +66,5 @@ public class ShowController {
 
         return ReturnResultUtils.returnSuccess(goodsVo);
     }
-
-
-    /*------------云层-------------*/
-    public String goPay(){
-        return "";
-    }
-
-
-
 
 }

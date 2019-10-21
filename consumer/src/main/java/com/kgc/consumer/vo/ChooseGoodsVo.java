@@ -12,6 +12,8 @@ public class ChooseGoodsVo implements Serializable {
     private String goodName;
     private String goodContent;
     private String goodImage;
+    @ApiModelProperty(value = "购买数量", required = true)
+    private int amount;
     @ApiModelProperty(value = "积分可减金额", required = true)
     private int subPrice;
     @ApiModelProperty(value = "运费", required = true)
@@ -65,5 +67,13 @@ public class ChooseGoodsVo implements Serializable {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

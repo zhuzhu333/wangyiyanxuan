@@ -13,12 +13,16 @@ public interface ShowService {
 
     //展示商品
     Good showGoods(String gid);
+
     //查出用户的积分
     User queryIntegral(String uid);
+
     //查订单中某个商品好评的个数
     int highPraise(String gid);
+
     //查订单中某个商品总个数
     int totalOrder(String gid);
+
     //查询用户积分
     int selectIntegral(String phone);
 

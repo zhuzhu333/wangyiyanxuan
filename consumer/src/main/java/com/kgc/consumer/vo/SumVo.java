@@ -1,9 +1,11 @@
 package com.kgc.consumer.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by Campbell on 2019/10/19 10:01
  */
-public class SumVo {
+public class SumVo implements Serializable {
 
     private String userName;
 

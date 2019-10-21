@@ -38,7 +38,7 @@ public class ShowServiceImpl implements ShowService {
         List<Good> goodList = goodMapper.selectByExample(goodExample);
         if (null != goodList) {
             Good good = new Good();
-            BeanUtils.copyProperties(goodList.get(0),good);
+            BeanUtils.copyProperties(goodList.get(0), good);
             good.setGoodPrice(goodList.get(0).getGoodPrice() * 0.98);
             return good;
         }
@@ -58,7 +58,7 @@ public class ShowServiceImpl implements ShowService {
     @Override
     public int highPraise(String gid) {
         int highPraise = orderMapper.highPraise(gid);
-        if (highPraise!=0){
+        if (highPraise != 0) {
             return highPraise;
         }
         return 0;
@@ -67,7 +67,7 @@ public class ShowServiceImpl implements ShowService {
     @Override
     public int totalOrder(String gid) {
         int totalOrder = orderMapper.totalOrder(gid);
-        if (totalOrder!=0){
+        if (totalOrder != 0) {
             return totalOrder;
         }
         return 0;
@@ -75,9 +75,9 @@ public class ShowServiceImpl implements ShowService {
 
     @Override
     public int selectIntegral(String phone) {
-        UserExample userExample=new UserExample();
+        UserExample userExample = new UserExample();
         userExample.createCriteria().andUserPhoneEqualTo(phone);
-        List<User> list=userMapper.selectByExample(userExample);
-        return  list.get(0).getIntegral();
+        List<User> list = userMapper.selectByExample(userExample);
+        return list.get(0).getIntegral();
     }
 }
