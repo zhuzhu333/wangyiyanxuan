@@ -2,10 +2,8 @@ package com.kgc.consumer.config;
 
 
 
-import com.kgc.consumer.custom.CheckInfoComplete;
-import com.kgc.consumer.custom.CheckInfo;
-import com.kgc.consumer.custom.CurrentComplete;
-import com.kgc.consumer.custom.LoginReqComplete;
+import com.kgc.consumer.config.custom.CurrentComplete;
+import com.kgc.consumer.config.custom.LoginReqComplete;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -19,25 +17,19 @@ import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.List;
 
-
+/**
+ * Created by boot on 2019/9/29.
+ */
 @Configuration
 public class webConfiguration implements WebMvcConfigurer {
-
-    //自定义的注解LoginReqComplete
     @Bean
     public LoginReqComplete loginReqComplete() {
         return new LoginReqComplete();
     }
 
-
-    //自定义的注解CurrentComplete
     @Bean
     public CurrentComplete currentComplete() {
         return new CurrentComplete();
-    }
-    @Bean
-    public CheckInfoComplete checkInfoComplete() {
-        return new CheckInfoComplete();
     }
 
     @Override
@@ -65,14 +57,11 @@ public class webConfiguration implements WebMvcConfigurer {
 
     }
 
-    //拦截请求  只要路径有"/"的 都拦截  到loginReqComplete()方法里面
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
-        interceptorRegistry.addInterceptor(checkInfoComplete()).addPathPatterns("/**");
         interceptorRegistry.addInterceptor(loginReqComplete()).addPathPatterns("/**");
+
     }
-
-
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry resourceHandlerRegistry) {
@@ -80,13 +69,14 @@ public class webConfiguration implements WebMvcConfigurer {
     }
 
     @Override
-    //配置跨域 这里是解决了跨域
+    //配置跨域 自己去看跨域是什么 这里是解决了跨域
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH")
                 .maxAge(3600);
+
     }
 
     @Override
@@ -99,7 +89,6 @@ public class webConfiguration implements WebMvcConfigurer {
 
     }
 
-    //参数拦截器
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> list) {
         list.add(currentComplete());

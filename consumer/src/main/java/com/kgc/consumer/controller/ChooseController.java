@@ -68,7 +68,7 @@ public class ChooseController {
             phone = sumVo.getPhone();
         }
         int integral = showService.selectIntegral(phone);
-        chooseVo.setFreight(integral / 100);
+        chooseVo.setSubPrice(integral / 100);
 
         //运费
         if (sumVo.getSuperman() == 1) {

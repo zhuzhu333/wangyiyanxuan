@@ -28,5 +28,5 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
     int updateExp(@Param("phone") String phone);
-    int updateIntergral(@Param("phone") String phone,@Param("phone") int reIntegral);
+    int updateIntergral(@Param("phone") String phone,@Param("reIntegral") int reIntegral);
 }
