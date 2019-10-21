@@ -6,6 +6,7 @@ import com.kgc.consumer.config.custom.CurrentUser;
 import com.kgc.consumer.config.custom.LoginRequired;
 import com.kgc.consumer.model.WXPayModel;
 import com.kgc.consumer.service.WXPayServiceApi;
+import com.kgc.consumer.utils.CommonUtil;
 import com.kgc.consumer.utils.result.ReturnResult;
 import com.kgc.consumer.utils.result.ReturnResultUtils;
 import com.kgc.consumer.utils.wxPayUtils.WxPayUtils;
@@ -13,7 +14,9 @@ import com.kgc.consumer.vo.ChooseGoodsVo;
 import com.kgc.consumer.vo.OrderVo;
 import com.kgc.consumer.vo.SumVo;
 import com.kgc.provider.dto.Good;
+import com.kgc.provider.dto.Order;
 import com.kgc.provider.service.ChooseService;
+import com.kgc.provider.service.OrderService;
 import com.kgc.provider.service.ShowService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,9 +30,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -45,6 +50,8 @@ public class ChooseController {
     private ShowService showService;
     @Reference
     private ChooseService chooseService;
+    @Reference
+    private OrderService orderService;
     @Autowired
     private WXPayServiceApi wxPayServiceApi;
     @Autowired
@@ -55,11 +62,12 @@ public class ChooseController {
     @GetMapping(value = "/chooseGood")
     @LoginRequired
     public ReturnResult chooseGood(@ApiParam(value = "商品id", required = true) @RequestParam(value = "gid") String gid,
-                                   @ApiParam(value = "购买数量", required = true) @RequestParam(value = "amount") int amount, @CurrentUser SumVo sumVo) {
+                                   @ApiParam(value = "购买数量", required = true) @RequestParam(value = "amount") int amount,
+                                   @ApiParam(value = "是否超级会员", required = true) @RequestParam(value = "supman") int supman,
+                                   @CurrentUser SumVo sumVo) {
         Good good = showService.showGoods(gid);
         ChooseGoodsVo chooseVo = new ChooseGoodsVo();
         BeanUtils.copyProperties(good, chooseVo);
-
         //积分可抵扣额度
         String phone;
         if (null == sumVo.getPhone()) {
@@ -68,10 +76,9 @@ public class ChooseController {
             phone = sumVo.getPhone();
         }
         int integral = showService.selectIntegral(phone);
-        chooseVo.setSubPrice(integral / 100);
-
+        chooseVo.setSubPrice(integral / 10);
         //运费
-        if (sumVo.getSuperman() == 1) {
+        if (supman == 1) {
             chooseVo.setFreight(0);
         } else if (sumVo.getUserLevel() < 3) {
             chooseVo.setFreight(5);
@@ -79,10 +86,16 @@ public class ChooseController {
             chooseVo.setFreight(10);
         }
         chooseVo.setAmount(amount);
-        chooseVo.setTotalPrice(good.getGoodPrice() * amount + chooseVo.getFreight() - chooseVo.getSubPrice());
-        chooseService.updateIntergral(phone,new Double(chooseVo.getTotalPrice()*0.1).intValue());
+        //超级会员98折
+        if (supman == 1) {
+            chooseVo.setTotalPrice(good.getGoodPrice() * 0.98 * amount + chooseVo.getFreight() - chooseVo.getSubPrice());
+        } else {
+            chooseVo.setTotalPrice(good.getGoodPrice() * amount + chooseVo.getFreight() - chooseVo.getSubPrice());
+        }
+        chooseService.updateIntergral(phone, new Double(chooseVo.getTotalPrice() * 0.1).intValue());
         return ReturnResultUtils.returnSuccess(chooseVo);
     }
+
 
 
     @ApiOperation(value = "统一下单")
