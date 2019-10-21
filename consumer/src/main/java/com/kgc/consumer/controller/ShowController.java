@@ -27,7 +27,7 @@ public class ShowController {
 
     @Reference
     private ShowService showService;
-
+ 
     @GetMapping(value = "showGoods")
     @ApiOperation("商品")
     public ReturnResult showGoods(@ApiParam(value = "商品id", required = true)

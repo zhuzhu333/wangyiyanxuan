@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kgc.consumer.contants.GoodContant;
+import com.kgc.consumer.model.GroupInfo;
+import com.kgc.consumer.utils.GetClientIpAddr;
 import com.kgc.consumer.utils.RedisUtils;
 import com.kgc.consumer.utils.result.ReturnResult;
 import com.kgc.consumer.utils.result.ReturnResultUtils;
@@ -95,7 +97,6 @@ public class indexController {
         BeanUtils.copyProperties(good, shoppingcart);
         //
         HttpSession session = request.getSession();
-
         String sessionId = session.getId();
         String shoppingCartStr = (String) redisUtils.get(GoodContant.GOU_WU_CHE + sessionId);
 
@@ -158,6 +159,28 @@ public class indexController {
             goodsVoList.add(goodsVo);
         });
         return ReturnResultUtils.returnSuccess(goodsVoList);
+    }
+
+
+    @ApiOperation("获取Url")
+    @GetMapping(value = "/getGroupInfo")
+    public GroupInfo getGroupInfo(@ApiParam(value = "groupName", required = true) @RequestParam(value = "groupName", required = true)String groupName){
+
+
+        String groupSort=indexService.selectByName(groupName).getGoodSort();
+
+        GroupInfo groupInfo=new GroupInfo();
+
+        String urll="http://you.163.com/item/list?categoryId=";
+
+        groupInfo.setUrl(urll+groupSort);
+        groupInfo.setGroupName(groupName);
+
+
+
+        return groupInfo;
+
+
     }
 
 }
