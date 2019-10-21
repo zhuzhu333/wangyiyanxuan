@@ -52,6 +52,4 @@ public class ChooseController {
         chooseVo.setTotalPrice(good.getGoodPrice() * 0.98 + chooseVo.getFreight() - chooseVo.getSubPrice());
         return ReturnResultUtils.returnSuccess(chooseVo);
     }
-
-
 }
