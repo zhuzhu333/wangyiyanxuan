@@ -82,7 +82,7 @@ public class indexController {
         List<Good> goods = indexService.selectBySort(Integer.parseInt(goodSort), pageVo.getsPage(), pageVo.getpSize());
         List goodNames = new ArrayList();
         goods.forEach(obj -> {
-            goodNames.add(obj.getGoodName());
+            goodNames.add(obj);
         });
         GoodDetails goodDetails=new GoodDetails();
         //插入商品分页信息
