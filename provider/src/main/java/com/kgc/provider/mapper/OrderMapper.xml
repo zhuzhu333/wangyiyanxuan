@@ -438,7 +438,7 @@
     where id = #{id}
   </update>
 
-  <update id="updateGoodIntegral" parameterType="int">
+  <update id="updateGoodIntegral">
     update orders
     set good_integral = #{score,jdbcType=INTEGER}
     where id = #{id}
