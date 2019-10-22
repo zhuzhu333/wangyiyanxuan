@@ -31,7 +31,6 @@ public class Order implements Serializable {
     private Integer goodAmount;
 
     private int startPage;
-
     private int pageSize;
 
     public Long getId() {

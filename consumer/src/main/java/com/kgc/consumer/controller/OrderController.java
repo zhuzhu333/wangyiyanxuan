@@ -1,21 +1,23 @@
 package com.kgc.consumer.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+
+import com.kgc.consumer.config.custom.CurrentUser;
+import com.kgc.consumer.config.custom.LoginRequired;
 import com.kgc.consumer.contants.OrderContant;
+
 import com.kgc.consumer.utils.result.ReturnResult;
 import com.kgc.consumer.utils.result.ReturnResultUtils;
 import com.kgc.consumer.vo.OrderVo;
 import com.kgc.consumer.vo.Page;
+import com.kgc.consumer.vo.SumVo;
 import com.kgc.provider.dto.Order;
 import com.kgc.provider.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,11 +34,19 @@ public class OrderController {
 
     @ApiOperation("查询订单")
     @GetMapping(value = "/getOrderList")
-    public ReturnResult<Page> getOrderList(OrderVo orderVo) {
+    @LoginRequired
+    public ReturnResult<Page> getOrderList(OrderVo orderVo, @CurrentUser SumVo sumVo) {
         Order order = new Order();
         BeanUtils.copyProperties(orderVo, order);
         order.setStartPage((orderVo.getStartPage() - 1) * orderVo.getPageSize());
         order.setPageSize(orderVo.getPageSize());
+        String phone;
+        if (null == sumVo.getPhone()) {
+            phone = sumVo.getUserPhone();
+        } else {
+            phone = sumVo.getPhone();
+        }
+        order.setPhone(phone);
         List<Order> orderList = orderService.getOrderList(order);
         int count = orderService.count(order);
 
@@ -49,7 +59,7 @@ public class OrderController {
     }
 
     @ApiOperation("逻辑删除订单")
-    @GetMapping(value = "/isDel")
+    @PostMapping(value = "/isDel")
     public ReturnResult isDel(@ApiParam(value = "订单id", required = true) @RequestParam(value = "id") int id) {
         boolean isDel = orderService.isDel(id);
         if (isDel) {
@@ -66,14 +76,14 @@ public class OrderController {
     }
 
     @ApiOperation("删除回收站")
-    @GetMapping(value = "/delRecycle")
+    @PostMapping(value = "/delRecycle")
     public ReturnResult delRecycle() {
         int delCount = orderService.delRecycle();
         return ReturnResultUtils.returnSuccess(delCount);
     }
 
     @ApiOperation("打分")
-    @GetMapping(value = "/updateGoodIntegral")
+    @PostMapping(value = "/updateGoodIntegral")
     public ReturnResult updateGoodIntegral(int id, int score) {
         int result = orderService.updateGoodIntegral(id, score);
         if (result != 0) {

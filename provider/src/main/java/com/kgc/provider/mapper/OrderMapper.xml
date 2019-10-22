@@ -346,43 +346,40 @@
     where
     1=1
     <if test="goodId != null">
-      and good_id = #{goodId,jdbcType=VARCHAR},
+      and good_id = #{goodId,jdbcType=VARCHAR}
     </if>
     <if test="userId != null">
-      and user_id = #{userId,jdbcType=VARCHAR},
+      and user_id = #{userId,jdbcType=VARCHAR}
     </if>
     <if test="status != null">
-      and `status` = #{status,jdbcType=INTEGER},
+      and `status` = #{status,jdbcType=INTEGER}
     </if>
     <if test="code != null">
-      and code like CONCAT('%',#{code},'%'),
+      and code like CONCAT('%',#{code},'%')
     </if>
     <if test="createTime != null">
-      and create_time = #{createTime,jdbcType=TIMESTAMP},
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
     <if test="phone != null">
-      and phone = #{phone,jdbcType=VARCHAR},
+      and phone = #{phone,jdbcType=VARCHAR}
     </if>
     <if test="goodName != null">
-      and good_name like CONCAT('%',#{goodName},'%'),
+      and good_name like CONCAT('%',#{goodName},'%')
     </if>
     <if test="isDelete != null">
-      and is_delete = #{isDelete,jdbcType=INTEGER},
+      and is_delete = #{isDelete,jdbcType=INTEGER}
     </if>
     <if test="goodIntegral != null">
-      and good_integral = #{goodIntegral,jdbcType=INTEGER},
+      and good_integral = #{goodIntegral,jdbcType=INTEGER}
     </if>
     <if test="address != null">
-      and address = #{address,jdbcType=VARCHAR},
+      and address = #{address,jdbcType=VARCHAR}
     </if>
     <if test="goodAmount != null">
-      and good_amount = #{goodAmount,jdbcType=INTEGER},
+      and good_amount = #{goodAmount,jdbcType=INTEGER}
     </if>
     <if test="goodPrice != null">
-      and good_price = #{goodPrice,jdbcType=DOUBLE},
-    </if>
-    <if test="orderType != null">
-      and order_type = #{orderType,jdbcType=INTEGER},
+      and good_price = #{goodPrice,jdbcType=DOUBLE}
     </if>
     order by create_time desc
     <if test="startPage != null || pageSize != null">
@@ -394,42 +391,41 @@
     where
     1=1
     <if test="goodId != null">
-      and good_id = #{goodId,jdbcType=VARCHAR},
+      and good_id = #{goodId,jdbcType=VARCHAR}
     </if>
     <if test="userId != null">
-      and user_id = #{userId,jdbcType=VARCHAR},
+      and user_id = #{userId,jdbcType=VARCHAR}
     </if>
     <if test="status != null">
-      and `status` = #{status,jdbcType=INTEGER},
+      and `status` = #{status,jdbcType=INTEGER}
     </if>
     <if test="code != null">
-      and code like CONCAT('%',#{code},'%'),
+      and code like CONCAT('%',#{code},'%')
     </if>
     <if test="createTime != null">
-      and create_time = #{createTime,jdbcType=TIMESTAMP},
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
     <if test="phone != null">
-      and phone = #{phone,jdbcType=VARCHAR},
+      and phone = #{phone,jdbcType=VARCHAR}
     </if>
     <if test="goodName != null">
-      and good_name like CONCAT('%',#{goodName},'%'),
+      and good_name like CONCAT('%',#{goodName},'%')
     </if>
     <if test="isDelete != null">
-      and is_delete = #{isDelete,jdbcType=INTEGER},
+      and is_delete = #{isDelete,jdbcType=INTEGER}
     </if>
     <if test="goodIntegral != null">
-      and good_integral = #{goodIntegral,jdbcType=INTEGER},
+      and good_integral = #{goodIntegral,jdbcType=INTEGER}
     </if>
     <if test="address != null">
-      and address = #{address,jdbcType=VARCHAR},
+      and address = #{address,jdbcType=VARCHAR}
     </if>
     <if test="goodAmount != null">
-      and good_amount = #{goodAmount,jdbcType=INTEGER},
+      and good_amount = #{goodAmount,jdbcType=INTEGER}
     </if>
     <if test="goodPrice != null">
-      and good_price = #{goodPrice,jdbcType=DOUBLE},
+      and good_price = #{goodPrice,jdbcType=DOUBLE}
     </if>
-
   </select>
 
   <update id="isDel" parameterType="int">
@@ -438,14 +434,9 @@
     where id = #{id}
   </update>
 
-  <update id="updateGoodIntegral" parameterType="int">
+  <update id="updateGoodIntegral">
     update orders
-    set good_integral = #{score,jdbcType=INTEGER},
+    set good_integral = #{score}
     where id = #{id}
-  </update>
-
-  <update id="cutStock">
-   update orders
-    set good_stock=good_stock-1 where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

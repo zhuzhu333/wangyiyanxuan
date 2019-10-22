@@ -27,6 +27,7 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
     int highPraise(String gid);
 
     int totalOrder(String gid);
@@ -37,6 +38,5 @@ public interface OrderMapper {
 
     int isDel(int id);
 
-    int updateGoodIntegral(int id,int score);
-    int cutStock(String phone);
+    int updateGoodIntegral(@Param("id") int id, @Param("score") int score);
 }

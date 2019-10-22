@@ -7,49 +7,33 @@ import java.io.Serializable;
 
 public class OrderVo implements Serializable {
 
-    private String Username;
+    private String username;
     private String goodName;
     private String phone;
     private String address;
     private Double goodPrice;
     private String goodId;
     private int goodsAmount;
+    private Integer status;
     private String code;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public int getGoodsAmount() {
-        return goodsAmount;
-    }
-
-    public void setGoodsAmount(int goodsAmount) {
-        this.goodsAmount = goodsAmount;
-    }
-
+    private Integer goodIntegral;
     private int startPage;
     private int pageSize;
 
-    public String getGoodId() {
-        return goodId;
-    }
-
-    public void setGoodId(String goodId) {
-        this.goodId = goodId;
-    }
-
-
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
+    }
+
+    public String getGoodName() {
+        return goodName;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
     }
 
     public String getPhone() {
@@ -68,6 +52,54 @@ public class OrderVo implements Serializable {
         this.address = address;
     }
 
+    public Double getGoodPrice() {
+        return goodPrice;
+    }
+
+    public void setGoodPrice(Double goodPrice) {
+        this.goodPrice = goodPrice;
+    }
+
+    public String getGoodId() {
+        return goodId;
+    }
+
+    public void setGoodId(String goodId) {
+        this.goodId = goodId;
+    }
+
+    public int getGoodsAmount() {
+        return goodsAmount;
+    }
+
+    public void setGoodsAmount(int goodsAmount) {
+        this.goodsAmount = goodsAmount;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Integer getGoodIntegral() {
+        return goodIntegral;
+    }
+
+    public void setGoodIntegral(Integer goodIntegral) {
+        this.goodIntegral = goodIntegral;
+    }
+
     public int getStartPage() {
         return startPage;
     }
@@ -83,21 +115,4 @@ public class OrderVo implements Serializable {
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
-
-    public String getGoodName() {
-        return goodName;
-    }
-
-    public void setGoodName(String goodName) {
-        this.goodName = goodName;
-    }
-
-    public Double getGoodPrice() {
-        return goodPrice;
-    }
-
-    public void setGoodPrice(Double goodPrice) {
-        this.goodPrice = goodPrice;
-    }
-
 }
