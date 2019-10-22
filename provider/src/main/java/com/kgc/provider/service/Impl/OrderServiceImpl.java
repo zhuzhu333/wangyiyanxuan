@@ -8,7 +8,6 @@ import com.kgc.provider.dto.OrderExample;
 import com.kgc.provider.mapper.GoodMapper;
 import com.kgc.provider.mapper.OrderMapper;
 import com.kgc.provider.service.OrderService;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -75,9 +74,15 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+
     @Override
     public void cutStock(String phone) {
 
+    }
+
+    @Override
+    public void delStock(String gid) {
+        orderMapper.delStock(gid);
     }
 
 }

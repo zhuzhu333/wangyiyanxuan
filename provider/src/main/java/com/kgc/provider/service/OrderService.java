@@ -22,12 +22,13 @@ public interface OrderService {
 
     int delRecycle();
 
-    int updateGoodIntegral(int id,int score);
+    int updateGoodIntegral(int id, int score);
 
     Good isExist(String goodId);
 
     void cutStock(String phone);
 
-
+    //减库存
+    void delStock(String gid);
 
 }

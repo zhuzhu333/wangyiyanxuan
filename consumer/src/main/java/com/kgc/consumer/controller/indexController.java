@@ -174,21 +174,13 @@ public class indexController {
     @GetMapping(value = "/getGroupInfo")
     public GroupInfo getGroupInfo(@ApiParam(value = "groupName", required = true) @RequestParam(value = "groupName", required = true)String groupName){
 
-
         String groupSort=indexService.selectByName(groupName).getGoodSort();
-
         GroupInfo groupInfo=new GroupInfo();
-
         String urll="http://you.163.com/item/list?categoryId=";
-
         groupInfo.setUrl(urll+groupSort);
         groupInfo.setGroupName(groupName);
 
-
-
         return groupInfo;
-
-
     }
 
 }

@@ -2,7 +2,9 @@ package com.kgc.provider.mapper;
 
 import com.kgc.provider.dto.Order;
 import com.kgc.provider.dto.OrderExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
@@ -39,4 +41,6 @@ public interface OrderMapper {
     int isDel(int id);
 
     int updateGoodIntegral(@Param("id") int id, @Param("score") int score);
+
+    void delStock(@Param("gid") String gid);
 }
