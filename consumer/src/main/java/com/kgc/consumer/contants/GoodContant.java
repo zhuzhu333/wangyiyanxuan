@@ -10,4 +10,5 @@ package com.kgc.consumer.contants;
  */
 public final class GoodContant {
     public static final String GOU_WU_CHE = "GOU_WU_CHE:";
+    public static final String ADD_GOOD_SUCCESS = "添加购物车成功！";
 }

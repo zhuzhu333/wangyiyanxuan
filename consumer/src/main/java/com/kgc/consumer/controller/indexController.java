@@ -34,6 +34,9 @@ import springfox.documentation.spring.web.json.Json;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,8 +62,13 @@ public class indexController {
     public ReturnResult<List> showGroup() {
         List<GoodsGroup> list = indexService.showGroup();
         List showGroup = new ArrayList();
+
+        String urll="http://you.163.com/item/list?categoryId=";
         list.forEach(obj -> {
-            showGroup.add(obj.getGroupName());
+            GroupInfo groupInfo=new GroupInfo();
+            groupInfo.setUrl(urll+obj.getGoodSort());
+            groupInfo.setGroupName(obj.getGroupName());
+            showGroup.add(groupInfo);
         });
         return ReturnResultUtils.returnSuccess(showGroup);
     }
@@ -68,7 +76,7 @@ public class indexController {
     @ApiOperation(value = "showGoods")
     @GetMapping(value = "/showGoods")
     public ReturnResult<List> showGoods(@ApiParam(value = "group", required = true) @RequestParam(value = "group", required = true) String group, @Valid PageVo pageVo,
-                                        @ApiParam(value = "ip", required = true) @RequestParam(value = "ip", required = true)String ip) {
+                                        @ApiParam(value = "ip", required = true) @RequestParam(value = "ip", required = true)String ip)  {
         GoodsGroup goodsGroup = indexService.selectByName(group);
         String goodSort = goodsGroup.getGoodSort();
         List<Good> goods = indexService.selectBySort(Integer.parseInt(goodSort), pageVo.getsPage(), pageVo.getpSize());
@@ -82,24 +90,23 @@ public class indexController {
         //插入商品搜索框默认商品
         goodDetails.setDefaultName(indexService.randomGood().getGoodName());
         //计算购物车商品数量
-        String token = (String) redisUtils.get(ip);
+        String token = (String) redisUtils.get(GoodContant.GOU_WU_CHE+ip);
+        /*String address=Inet4Address.getLocalHost().getHostAddress();*/
         List<Shoppingcart> list = JSONArray.parseArray(token, Shoppingcart.class);
         goodDetails.setGoodNumber(list.size());
-        return ReturnResultUtils.returnSuccess(goodNames);
+        return ReturnResultUtils.returnSuccess(goodDetails);
     }
 
     @ApiOperation(value = "添加商品到购物车")
     @GetMapping(value = "/setShoppingCart")
-    public void setShoppingCart(@ApiParam(value = "goodName", required = true) @RequestParam(value = "goodName", required = true) String goodName, HttpServletRequest request) {
+    public ReturnResult setShoppingCart(@ApiParam(value = "goodName", required = true) @RequestParam(value = "goodName", required = true) String goodName, HttpServletRequest request) {
         //获取商品信息
         Good good = indexService.selectByGoodName(goodName);
         Shoppingcart shoppingcart = new Shoppingcart();
         BeanUtils.copyProperties(good, shoppingcart);
         //
-        HttpSession session = request.getSession();
-        String sessionId = session.getId();
-        String shoppingCartStr = (String) redisUtils.get(GoodContant.GOU_WU_CHE + sessionId);
-
+        String ip=GetClientIpAddr.getClientIp(request);
+        String shoppingCartStr = (String) redisUtils.get(GoodContant.GOU_WU_CHE +ip);
         List<Shoppingcart> list = JSONArray.parseArray(shoppingCartStr, Shoppingcart.class);
         boolean isExit = false;
         if (null != list) {
@@ -116,26 +123,27 @@ public class indexController {
                 shoppingcart.setGoodAmount(1);
                 list.add(shoppingcart);
                 String relist = JSON.toJSONString(list);
-                redisUtils.set(GoodContant.GOU_WU_CHE + sessionId, relist);
+                redisUtils.set(GoodContant.GOU_WU_CHE + ip, relist);
             } else {
                 String relist = JSON.toJSONString(list);
-                redisUtils.set(GoodContant.GOU_WU_CHE + sessionId, relist);
+                redisUtils.set(GoodContant.GOU_WU_CHE + ip, relist);
             }
         } else {
             List<Shoppingcart> flist = new ArrayList<>();
             shoppingcart.setGoodAmount(1);
             flist.add(shoppingcart);
             String relist = JSON.toJSONString(flist);
-            redisUtils.set(GoodContant.GOU_WU_CHE + sessionId, relist, 3000);
+            redisUtils.set(GoodContant.GOU_WU_CHE + ip, relist, 3000);
         }
+        return ReturnResultUtils.returnSuccess(GoodContant.ADD_GOOD_SUCCESS);
     }
 
     @ApiOperation("展示购物车")
     @GetMapping(value = "/showShoppingCart")
     public ReturnResult<List> showShoppingCart(HttpServletRequest request) {
-        String str = request.getSession().getId();
-        String token = (String) redisUtils.get(GoodContant.GOU_WU_CHE + str);
-        List<Shoppingcart> list = JSONArray.parseArray(token, Shoppingcart.class);
+        String ip=GetClientIpAddr.getClientIp(request);
+        String shoppingCartStr = (String) redisUtils.get(GoodContant.GOU_WU_CHE +ip);
+        List<Shoppingcart> list = JSONArray.parseArray(shoppingCartStr, Shoppingcart.class);
         return ReturnResultUtils.returnSuccess(list);
     }
 
