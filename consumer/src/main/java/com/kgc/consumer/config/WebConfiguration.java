@@ -1,8 +1,8 @@
 package com.kgc.consumer.config;
 
 
-import com.kgc.consumer.config.custom.CurrentComplete;
-import com.kgc.consumer.config.custom.LoginReqComplete;
+import com.kgc.consumer.custom.CurrentComplete;
+import com.kgc.consumer.custom.LoginReqComplete;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -34,6 +34,9 @@ public class WebConfiguration implements WebMvcConfigurer {
     public CurrentComplete currentComplete() {
         return new CurrentComplete();
     }
+
+
+
     @Override
     public void configurePathMatch(PathMatchConfigurer pathMatchConfigurer) {
 

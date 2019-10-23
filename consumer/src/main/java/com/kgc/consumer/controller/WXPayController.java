@@ -1,12 +1,21 @@
 package com.kgc.consumer.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.google.common.collect.Maps;
+
+import com.kgc.consumer.custom.CurrentUser;
+import com.kgc.consumer.custom.LoginRequired;
 import com.kgc.consumer.model.WXPayModel;
-import com.kgc.consumer.service.WXPayServiceApi;
+import com.kgc.consumer.service.WXPayServiceApiApi;
 import com.kgc.consumer.utils.wxPayUtils.WxPayUtils;
-import com.kgc.consumer.vo.OrderVo;
+import com.kgc.consumer.vo.WXPayUserVo;
+import com.kgc.provider.dto.Order;
+import com.kgc.provider.dto.User;
+import com.kgc.provider.service.AAOrderService;
+import com.kgc.provider.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,15 +37,32 @@ import java.util.Map;
 @RequestMapping(value = "/wxPay")
 public class WXPayController {
     @Autowired
-    private WXPayServiceApi wxPayServiceApi;
+    private WXPayServiceApiApi wxPayServiceApiApi;
     @Autowired
     private WXPayModel wxPayModel;
+
+    @Reference
+    private OrderService orderService;
+
+    @Reference
+    private AAOrderService aaOrderService;
+
+
+    String code;
 
 
     @ApiOperation(value = "统一下单")
     @GetMapping(value = "/unifiedWxpay")                /*unifiedWxpay统一下单*/
-    public String unifiedWXPay(OrderVo orderVo) throws Exception {
-        return wxPayServiceApi.unifiedWxpay(orderVo);
+    @LoginRequired
+    public String unifiedWXPay(String goodId, @CurrentUser User user) throws Exception {
+
+        Order order=aaOrderService.selectBygoodIdAndPhone(goodId,user.getUserPhone());
+        code=order.getCode();
+        WXPayUserVo wxPayUserVo=new WXPayUserVo();
+        wxPayUserVo.setUserName(user.getUserName());
+        wxPayUserVo.setGoodPrice(order.getGoodPrice());
+
+        return wxPayServiceApiApi.unifiedWxpay(wxPayUserVo);
     }
 
     @ApiOperation(value = "回调")
@@ -59,6 +85,26 @@ public class WXPayController {
             if (isCheckSign) {
                 //todo
                 //xxxx();
+
+                //减库存，加销量
+
+
+
+
+
+
+
+
+                //支付状态变为1
+
+                aaOrderService.updateStatus(code);
+
+                if (1==1){
+
+                }
+
+                //解锁
+
 
 
                 Map<String, String> rMap = Maps.newHashMap();

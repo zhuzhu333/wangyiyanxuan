@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+
 public interface OrderMapper {
     long countByExample(OrderExample example);
 
@@ -42,5 +43,11 @@ public interface OrderMapper {
 
     int updateGoodIntegral(@Param("id") int id, @Param("score") int score);
 
+    Order selectByGoodId(@Param("goodId") String goodId);
+
     void delStock(@Param("gid") String gid);
+
+    Order selectBygoodIdAndPhone(@Param("goodId") String goodId,@Param("phone") String phone);
+
+    int updateStatus(@Param("code") String code);
 }
